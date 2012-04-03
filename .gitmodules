@@ -1,0 +1,15 @@
+[submodule "Library/AFNetworking"]
+	path = Library/AFNetworking
+	url = git://github.com/AFNetworking/AFNetworking.git
+[submodule "Library/JSONKit"]
+	path = Library/JSONKit
+	url = git://github.com/johnezang/JSONKit.git
+[submodule "Library/SVProgressHUD"]
+	path = Library/SVProgressHUD
+	url = git://github.com/samvermette/SVProgressHUD.git
+[submodule "Library/ftutils"]
+	path = Library/ftutils
+	url = git://github.com/neror/ftutils.git
+[submodule "Library/iOS-boilerplate"]
+	path = Library/iOS-boilerplate
+	url = git://github.com/gimenete/iOS-boilerplate.git
