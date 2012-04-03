@@ -19,3 +19,6 @@
 [submodule "Library/EGOTableViewPullRefresh"]
 	path = Library/EGOTableViewPullRefresh
 	url = git://github.com/enormego/EGOTableViewPullRefresh.git
+[submodule "Library/XMPPFramework-linked"]
+	path = Library/XMPPFramework-linked
+	url = git://github.com/robbiehanson/XMPPFramework.git
