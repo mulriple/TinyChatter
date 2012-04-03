@@ -17,9 +17,7 @@
 		9657133D152AE1B400C0FFC3 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571331152AE1B400C0FFC3 /* AFURLConnectionOperation.m */; };
 		9657133E152AE1B400C0FFC3 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571333152AE1B400C0FFC3 /* AFXMLRequestOperation.m */; };
 		9657133F152AE1B400C0FFC3 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571335152AE1B400C0FFC3 /* UIImageView+AFNetworking.m */; };
-		96571346152AE20700C0FFC3 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 96571342152AE20700C0FFC3 /* CHANGELOG.md */; };
 		96571347152AE20700C0FFC3 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571344152AE20700C0FFC3 /* JSONKit.m */; };
-		96571348152AE20700C0FFC3 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 96571345152AE20700C0FFC3 /* README.md */; };
 		9657134D152AE21600C0FFC3 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9657134A152AE21600C0FFC3 /* SVProgressHUD.bundle */; };
 		9657134E152AE21600C0FFC3 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657134C152AE21600C0FFC3 /* SVProgressHUD.m */; };
 		96571350152AE22E00C0FFC3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9657134F152AE22E00C0FFC3 /* SystemConfiguration.framework */; };
@@ -27,6 +25,17 @@
 		9657135E152AE28E00C0FFC3 /* FTAnimation+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657135A152AE28E00C0FFC3 /* FTAnimation+UIView.m */; };
 		9657135F152AE28E00C0FFC3 /* FTAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657135B152AE28E00C0FFC3 /* FTAnimationManager.m */; };
 		96571360152AE28E00C0FFC3 /* FTUtils+NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657135C152AE28E00C0FFC3 /* FTUtils+NSObject.m */; };
+		96571368152AE38500C0FFC3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571367152AE38500C0FFC3 /* RootViewController.m */; };
+		9657136F152AE42E00C0FFC3 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9657136B152AE42E00C0FFC3 /* libTestFlight.a */; };
+		96571380152AE55200C0FFC3 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571376152AE55200C0FFC3 /* EGORefreshTableHeaderView.m */; };
+		96571381152AE55200C0FFC3 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 96571378152AE55200C0FFC3 /* blackArrow.png */; };
+		96571382152AE55200C0FFC3 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 96571379152AE55200C0FFC3 /* blackArrow@2x.png */; };
+		96571383152AE55200C0FFC3 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137A152AE55200C0FFC3 /* blueArrow.png */; };
+		96571384152AE55200C0FFC3 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137B152AE55200C0FFC3 /* blueArrow@2x.png */; };
+		96571385152AE55200C0FFC3 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137C152AE55200C0FFC3 /* grayArrow.png */; };
+		96571386152AE55200C0FFC3 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137D152AE55200C0FFC3 /* grayArrow@2x.png */; };
+		96571387152AE55200C0FFC3 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137E152AE55200C0FFC3 /* whiteArrow.png */; };
+		96571388152AE55200C0FFC3 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9657137F152AE55200C0FFC3 /* whiteArrow@2x.png */; };
 		969D9984152AC82000A3CFAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9983152AC82000A3CFAB /* UIKit.framework */; };
 		969D9986152AC82000A3CFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9985152AC82000A3CFAB /* Foundation.framework */; };
 		969D9988152AC82000A3CFAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9987152AC82000A3CFAB /* CoreGraphics.framework */; };
@@ -113,10 +122,8 @@
 		96571333152AE1B400C0FFC3 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		96571334152AE1B400C0FFC3 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		96571335152AE1B400C0FFC3 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		96571342152AE20700C0FFC3 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGELOG.md; sourceTree = "<group>"; };
 		96571343152AE20700C0FFC3 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		96571344152AE20700C0FFC3 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
-		96571345152AE20700C0FFC3 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		9657134A152AE21600C0FFC3 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		9657134B152AE21600C0FFC3 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		9657134C152AE21600C0FFC3 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
@@ -130,6 +137,20 @@
 		9657135A152AE28E00C0FFC3 /* FTAnimation+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FTAnimation+UIView.m"; path = "Library/ftutils/Classes/FTAnimation+UIView.m"; sourceTree = SOURCE_ROOT; };
 		9657135B152AE28E00C0FFC3 /* FTAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTAnimationManager.m; path = Library/ftutils/Classes/FTAnimationManager.m; sourceTree = SOURCE_ROOT; };
 		9657135C152AE28E00C0FFC3 /* FTUtils+NSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FTUtils+NSObject.m"; path = "Library/ftutils/Classes/FTUtils+NSObject.m"; sourceTree = SOURCE_ROOT; };
+		96571366152AE38500C0FFC3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		96571367152AE38500C0FFC3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		9657136B152AE42E00C0FFC3 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		9657136E152AE42E00C0FFC3 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		96571375152AE55200C0FFC3 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		96571376152AE55200C0FFC3 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		96571378152AE55200C0FFC3 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		96571379152AE55200C0FFC3 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		9657137A152AE55200C0FFC3 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		9657137B152AE55200C0FFC3 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		9657137C152AE55200C0FFC3 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		9657137D152AE55200C0FFC3 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		9657137E152AE55200C0FFC3 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		9657137F152AE55200C0FFC3 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		969D997F152AC82000A3CFAB /* TinyChatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyChatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		969D9983152AC82000A3CFAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		969D9985152AC82000A3CFAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -245,6 +266,7 @@
 				969D9988152AC82000A3CFAB /* CoreGraphics.framework in Frameworks */,
 				969D998A152AC82000A3CFAB /* CoreData.framework in Frameworks */,
 				96B744DA152ACF57008EBEB4 /* libidn.a in Frameworks */,
+				9657136F152AE42E00C0FFC3 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,10 +316,8 @@
 		96571341152AE20700C0FFC3 /* JSONKit */ = {
 			isa = PBXGroup;
 			children = (
-				96571342152AE20700C0FFC3 /* CHANGELOG.md */,
 				96571343152AE20700C0FFC3 /* JSONKit.h */,
 				96571344152AE20700C0FFC3 /* JSONKit.m */,
-				96571345152AE20700C0FFC3 /* README.md */,
 			);
 			name = JSONKit;
 			path = Library/JSONKit;
@@ -328,6 +348,58 @@
 			);
 			name = FTUtils;
 			path = Library/ftutils/Headers/FTUtils;
+			sourceTree = "<group>";
+		};
+		9657136A152AE42E00C0FFC3 /* TestFlight-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				9657136B152AE42E00C0FFC3 /* libTestFlight.a */,
+				9657136E152AE42E00C0FFC3 /* TestFlight.h */,
+			);
+			name = "TestFlight-SDK";
+			path = "Library/TestFlight-SDK";
+			sourceTree = "<group>";
+		};
+		96571372152AE55200C0FFC3 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				96571373152AE55200C0FFC3 /* Classes */,
+				96571377152AE55200C0FFC3 /* Resources */,
+			);
+			name = EGOTableViewPullRefresh;
+			path = Library/EGOTableViewPullRefresh/EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		96571373152AE55200C0FFC3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				96571374152AE55200C0FFC3 /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		96571374152AE55200C0FFC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				96571375152AE55200C0FFC3 /* EGORefreshTableHeaderView.h */,
+				96571376152AE55200C0FFC3 /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		96571377152AE55200C0FFC3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				96571378152AE55200C0FFC3 /* blackArrow.png */,
+				96571379152AE55200C0FFC3 /* blackArrow@2x.png */,
+				9657137A152AE55200C0FFC3 /* blueArrow.png */,
+				9657137B152AE55200C0FFC3 /* blueArrow@2x.png */,
+				9657137C152AE55200C0FFC3 /* grayArrow.png */,
+				9657137D152AE55200C0FFC3 /* grayArrow@2x.png */,
+				9657137E152AE55200C0FFC3 /* whiteArrow.png */,
+				9657137F152AE55200C0FFC3 /* whiteArrow@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		969D9974152AC82000A3CFAB = {
@@ -376,6 +448,8 @@
 				969D9995152AC82000A3CFAB /* AppDelegate.m */,
 				969D9997152AC82000A3CFAB /* TinyChatter.xcdatamodeld */,
 				969D998C152AC82000A3CFAB /* Supporting Files */,
+				96571366152AE38500C0FFC3 /* RootViewController.h */,
+				96571367152AE38500C0FFC3 /* RootViewController.m */,
 			);
 			path = TinyChatter;
 			sourceTree = "<group>";
@@ -413,6 +487,8 @@
 		969D99B8152AC8C000A3CFAB /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				96571372152AE55200C0FFC3 /* EGOTableViewPullRefresh */,
+				9657136A152AE42E00C0FFC3 /* TestFlight-SDK */,
 				96571353152AE27B00C0FFC3 /* FTUtils */,
 				96571349152AE21600C0FFC3 /* SVProgressHUD */,
 				96571341152AE20700C0FFC3 /* JSONKit */,
@@ -662,9 +738,15 @@
 			files = (
 				969D9990152AC82000A3CFAB /* InfoPlist.strings in Resources */,
 				969D99D2152AC96600A3CFAB /* README.txt in Resources */,
-				96571346152AE20700C0FFC3 /* CHANGELOG.md in Resources */,
-				96571348152AE20700C0FFC3 /* README.md in Resources */,
 				9657134D152AE21600C0FFC3 /* SVProgressHUD.bundle in Resources */,
+				96571381152AE55200C0FFC3 /* blackArrow.png in Resources */,
+				96571382152AE55200C0FFC3 /* blackArrow@2x.png in Resources */,
+				96571383152AE55200C0FFC3 /* blueArrow.png in Resources */,
+				96571384152AE55200C0FFC3 /* blueArrow@2x.png in Resources */,
+				96571385152AE55200C0FFC3 /* grayArrow.png in Resources */,
+				96571386152AE55200C0FFC3 /* grayArrow@2x.png in Resources */,
+				96571387152AE55200C0FFC3 /* whiteArrow.png in Resources */,
+				96571388152AE55200C0FFC3 /* whiteArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +830,8 @@
 				9657135E152AE28E00C0FFC3 /* FTAnimation+UIView.m in Sources */,
 				9657135F152AE28E00C0FFC3 /* FTAnimationManager.m in Sources */,
 				96571360152AE28E00C0FFC3 /* FTUtils+NSObject.m in Sources */,
+				96571368152AE38500C0FFC3 /* RootViewController.m in Sources */,
+				96571380152AE55200C0FFC3 /* EGORefreshTableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +929,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Library/XMPPFramework/Vendor/libidn\"",
+					"\"$(SRCROOT)/Library/TestFlight-SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -860,6 +945,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Library/XMPPFramework/Vendor/libidn\"",
+					"\"$(SRCROOT)/Library/TestFlight-SDK\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

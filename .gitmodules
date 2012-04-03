@@ -13,3 +13,9 @@
 [submodule "Library/iOS-boilerplate"]
 	path = Library/iOS-boilerplate
 	url = git://github.com/gimenete/iOS-boilerplate.git
+[submodule "Library/TestFlight-SDK"]
+	path = Library/TestFlight-SDK
+	url = git://github.com/danielctull/TestFlight-SDK.git
+[submodule "Library/EGOTableViewPullRefresh"]
+	path = Library/EGOTableViewPullRefresh
+	url = git://github.com/enormego/EGOTableViewPullRefresh.git
