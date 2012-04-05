@@ -106,6 +106,8 @@
 		96571478152AFAAF00C0FFC3 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96571476152AFAAF00C0FFC3 /* ChatViewController.xib */; };
 		9657147C152AFAE500C0FFC3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657147A152AFAE500C0FFC3 /* SettingViewController.m */; };
 		9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9657147B152AFAE500C0FFC3 /* SettingViewController.xib */; };
+		967B345D152D2D7800918D21 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967B345B152D2D7800918D21 /* SignInViewController.m */; };
+		967B345E152D2D7800918D21 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967B345C152D2D7800918D21 /* SignInViewController.xib */; };
 		969D9984152AC82000A3CFAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9983152AC82000A3CFAB /* UIKit.framework */; };
 		969D9986152AC82000A3CFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9985152AC82000A3CFAB /* Foundation.framework */; };
 		969D9988152AC82000A3CFAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9987152AC82000A3CFAB /* CoreGraphics.framework */; };
@@ -359,6 +361,9 @@
 		96571479152AFAE500C0FFC3 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		9657147A152AFAE500C0FFC3 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		9657147B152AFAE500C0FFC3 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		967B345A152D2D7800918D21 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		967B345B152D2D7800918D21 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		967B345C152D2D7800918D21 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		969D997F152AC82000A3CFAB /* TinyChatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyChatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		969D9983152AC82000A3CFAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		969D9985152AC82000A3CFAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -420,7 +425,7 @@
 		96B744E3152ACF89008EBEB4 /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
 		96B744E4152ACF89008EBEB4 /* XMPPElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPElement.h; sourceTree = "<group>"; };
 		96B744E5152ACF89008EBEB4 /* XMPPElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPElement.m; sourceTree = "<group>"; };
-		96B744E6152ACF89008EBEB4 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; name = XMPPFramework.h; path = Library/XMPPFramework/Core/XMPPFramework.h; sourceTree = "<group>"; };
+		96B744E6152ACF89008EBEB4 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = Library/XMPPFramework/Core/XMPPFramework.h; sourceTree = "<group>"; };
 		96B744E7152ACF89008EBEB4 /* XMPPInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPInternal.h; sourceTree = "<group>"; };
 		96B744E8152ACF89008EBEB4 /* XMPPIQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPIQ.h; sourceTree = "<group>"; };
 		96B744E9152ACF89008EBEB4 /* XMPPIQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPIQ.m; sourceTree = "<group>"; };
@@ -982,6 +987,9 @@
 				969D998C152AC82000A3CFAB /* Supporting Files */,
 				96571366152AE38500C0FFC3 /* RootViewController.h */,
 				96571367152AE38500C0FFC3 /* RootViewController.m */,
+				967B345A152D2D7800918D21 /* SignInViewController.h */,
+				967B345B152D2D7800918D21 /* SignInViewController.m */,
+				967B345C152D2D7800918D21 /* SignInViewController.xib */,
 				96571465152AF9A800C0FFC3 /* AddFriendViewController.h */,
 				96571466152AF9A800C0FFC3 /* AddFriendViewController.m */,
 				96571467152AF9A800C0FFC3 /* AddFriendViewController.xib */,
@@ -1300,6 +1308,7 @@
 				96571473152AFAA200C0FFC3 /* ChatListViewController.xib in Resources */,
 				96571478152AFAAF00C0FFC3 /* ChatViewController.xib in Resources */,
 				9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */,
+				967B345E152D2D7800918D21 /* SignInViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1449,6 +1458,7 @@
 				96571472152AFAA200C0FFC3 /* ChatListViewController.m in Sources */,
 				96571477152AFAAF00C0FFC3 /* ChatViewController.m in Sources */,
 				9657147C152AFAE500C0FFC3 /* SettingViewController.m in Sources */,
+				967B345D152D2D7800918D21 /* SignInViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
