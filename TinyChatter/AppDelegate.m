@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "SignInViewController.h"
 
 @implementation AppDelegate
 
@@ -29,6 +30,15 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+    
+    // -------------------- Attempt01 --------------------
+    SignInViewController *svc = [[[SignInViewController alloc] init] autorelease];
+    UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
+    nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.window.rootViewController = nav;
+    // ---------------------------------------------------
+    
+    // End override point
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

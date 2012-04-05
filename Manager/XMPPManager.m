@@ -128,7 +128,9 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     xmppStream = [[XMPPStream alloc] init];
     
 #if !TARGET_IPHONE_SIMULATOR
-    xmppStream.enableBackgroundingOnSock = YES;
+    {
+        xmppStream.enableBackgroundingOnSocket = YES;
+    }
 #endif
     
     xmppReconnect =[[XMPPReconnect alloc] init];
@@ -289,25 +291,28 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     if([[self xmppStream] authenticateWithPassword:passord error:&error] == NO)
     {
         DDLogError(@"Error authenticating: %@", error);
-        [self signInFailure](FailureTypeError, error, [error description]);
+        [self signInFailure](FailureTypeConnectionError, error, [error description]);
+        [self signInEnd]();
     }
-    else
-    {
-        [self signInSuccess](@"Signed In!");
-    }
-    
-    [self signInEnd]();
 }
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    [self signInSuccess](@"Signed In!");
+    [self signInEnd]();
+    
     [self goOnline];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(DDXMLElement *)error
 {
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
+    [self signInFailure](FailureTypeError, nil, @"Invalid user id and/or password");
+    [self signInEnd]();
+    
+    // since authenticate failed, just sever the connection
+    [xmppStream disconnect];
 }
 
 - (BOOL)xmppStream:(XMPPStream *)sender didReceiveIQ:(XMPPIQ *)iq
@@ -344,8 +349,12 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 {
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     
-    if(!isXmppConnected)
+    if(isXmppConnected == NO)
+    {
         DDLogError(@"Unable to connect to server. Check xmppStream.hostName");
+        [self signInFailure](FailureTypeConnectionError, error, [error description]);
+        [self signInEnd]();
+    }
 }
 
 #pragma mark - XMPPRosterDelegate

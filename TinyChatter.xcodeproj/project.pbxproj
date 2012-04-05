@@ -106,6 +106,16 @@
 		96571478152AFAAF00C0FFC3 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96571476152AFAAF00C0FFC3 /* ChatViewController.xib */; };
 		9657147C152AFAE500C0FFC3 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9657147A152AFAE500C0FFC3 /* SettingViewController.m */; };
 		9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9657147B152AFAE500C0FFC3 /* SettingViewController.xib */; };
+		967A494C152D8F240040CF49 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A494A152D8F240040CF49 /* SignInViewController.m */; };
+		967A494D152D8F240040CF49 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967A494B152D8F240040CF49 /* SignInViewController.xib */; };
+		967A4956152D900F0040CF49 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4950152D900F0040CF49 /* bg.png */; };
+		967A4957152D900F0040CF49 /* bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4951152D900F0040CF49 /* bg@2x.png */; };
+		967A4958152D900F0040CF49 /* buttonBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4952152D900F0040CF49 /* buttonBg.png */; };
+		967A4959152D900F0040CF49 /* buttonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4953152D900F0040CF49 /* buttonBg@2x.png */; };
+		967A495A152D900F0040CF49 /* textFieldBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4954152D900F0040CF49 /* textFieldBg.png */; };
+		967A495B152D900F0040CF49 /* textFieldBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4955152D900F0040CF49 /* textFieldBg@2x.png */; };
+		967A4960152D95E50040CF49 /* DismissKeyboardUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A495D152D95E50040CF49 /* DismissKeyboardUITableView.m */; };
+		967A4961152D95E50040CF49 /* DismissKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A495F152D95E50040CF49 /* DismissKeyboardView.m */; };
 		967B346B152D332000918D21 /* XMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 967B346A152D332000918D21 /* XMPPManager.m */; };
 		969D9984152AC82000A3CFAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9983152AC82000A3CFAB /* UIKit.framework */; };
 		969D9986152AC82000A3CFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9985152AC82000A3CFAB /* Foundation.framework */; };
@@ -360,6 +370,19 @@
 		96571479152AFAE500C0FFC3 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		9657147A152AFAE500C0FFC3 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		9657147B152AFAE500C0FFC3 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		967A4949152D8F240040CF49 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		967A494A152D8F240040CF49 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		967A494B152D8F240040CF49 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		967A4950152D900F0040CF49 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		967A4951152D900F0040CF49 /* bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg@2x.png"; sourceTree = "<group>"; };
+		967A4952152D900F0040CF49 /* buttonBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBg.png; sourceTree = "<group>"; };
+		967A4953152D900F0040CF49 /* buttonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBg@2x.png"; sourceTree = "<group>"; };
+		967A4954152D900F0040CF49 /* textFieldBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textFieldBg.png; sourceTree = "<group>"; };
+		967A4955152D900F0040CF49 /* textFieldBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "textFieldBg@2x.png"; sourceTree = "<group>"; };
+		967A495C152D95E50040CF49 /* DismissKeyboardUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardUITableView.h; sourceTree = "<group>"; };
+		967A495D152D95E50040CF49 /* DismissKeyboardUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardUITableView.m; sourceTree = "<group>"; };
+		967A495E152D95E50040CF49 /* DismissKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DismissKeyboardView.h; sourceTree = "<group>"; };
+		967A495F152D95E50040CF49 /* DismissKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DismissKeyboardView.m; sourceTree = "<group>"; };
 		967B3469152D332000918D21 /* XMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPManager.h; path = Manager/XMPPManager.h; sourceTree = "<group>"; };
 		967B346A152D332000918D21 /* XMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPManager.m; path = Manager/XMPPManager.m; sourceTree = "<group>"; };
 		969D997F152AC82000A3CFAB /* TinyChatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyChatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -936,6 +959,19 @@
 			path = "XEP-0203";
 			sourceTree = "<group>";
 		};
+		967A494F152D900F0040CF49 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				967A4950152D900F0040CF49 /* bg.png */,
+				967A4951152D900F0040CF49 /* bg@2x.png */,
+				967A4952152D900F0040CF49 /* buttonBg.png */,
+				967A4953152D900F0040CF49 /* buttonBg@2x.png */,
+				967A4954152D900F0040CF49 /* textFieldBg.png */,
+				967A4955152D900F0040CF49 /* textFieldBg@2x.png */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
 		967B3468152D31BE00918D21 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,6 +984,7 @@
 		969D9974152AC82000A3CFAB = {
 			isa = PBXGroup;
 			children = (
+				967A494F152D900F0040CF49 /* Asset */,
 				969D99B8152AC8C000A3CFAB /* Library */,
 				967B3468152D31BE00918D21 /* Manager */,
 				969D998B152AC82000A3CFAB /* TinyChatter */,
@@ -989,12 +1026,19 @@
 		969D998B152AC82000A3CFAB /* TinyChatter */ = {
 			isa = PBXGroup;
 			children = (
+				967A495C152D95E50040CF49 /* DismissKeyboardUITableView.h */,
+				967A495D152D95E50040CF49 /* DismissKeyboardUITableView.m */,
+				967A495E152D95E50040CF49 /* DismissKeyboardView.h */,
+				967A495F152D95E50040CF49 /* DismissKeyboardView.m */,
 				969D9994152AC82000A3CFAB /* AppDelegate.h */,
 				969D9995152AC82000A3CFAB /* AppDelegate.m */,
 				969D9997152AC82000A3CFAB /* TinyChatter.xcdatamodeld */,
 				969D998C152AC82000A3CFAB /* Supporting Files */,
 				96571366152AE38500C0FFC3 /* RootViewController.h */,
 				96571367152AE38500C0FFC3 /* RootViewController.m */,
+				967A4949152D8F240040CF49 /* SignInViewController.h */,
+				967A494A152D8F240040CF49 /* SignInViewController.m */,
+				967A494B152D8F240040CF49 /* SignInViewController.xib */,
 				96571465152AF9A800C0FFC3 /* AddFriendViewController.h */,
 				96571466152AF9A800C0FFC3 /* AddFriendViewController.m */,
 				96571467152AF9A800C0FFC3 /* AddFriendViewController.xib */,
@@ -1313,6 +1357,13 @@
 				96571473152AFAA200C0FFC3 /* ChatListViewController.xib in Resources */,
 				96571478152AFAAF00C0FFC3 /* ChatViewController.xib in Resources */,
 				9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */,
+				967A494D152D8F240040CF49 /* SignInViewController.xib in Resources */,
+				967A4956152D900F0040CF49 /* bg.png in Resources */,
+				967A4957152D900F0040CF49 /* bg@2x.png in Resources */,
+				967A4958152D900F0040CF49 /* buttonBg.png in Resources */,
+				967A4959152D900F0040CF49 /* buttonBg@2x.png in Resources */,
+				967A495A152D900F0040CF49 /* textFieldBg.png in Resources */,
+				967A495B152D900F0040CF49 /* textFieldBg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,6 +1514,9 @@
 				96571477152AFAAF00C0FFC3 /* ChatViewController.m in Sources */,
 				9657147C152AFAE500C0FFC3 /* SettingViewController.m in Sources */,
 				967B346B152D332000918D21 /* XMPPManager.m in Sources */,
+				967A494C152D8F240040CF49 /* SignInViewController.m in Sources */,
+				967A4960152D95E50040CF49 /* DismissKeyboardUITableView.m in Sources */,
+				967A4961152D95E50040CF49 /* DismissKeyboardView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1525,7 +1579,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-fobjc-arc",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1545,7 +1602,10 @@
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-lxml2";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-fobjc-arc",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
