@@ -108,6 +108,7 @@
 		9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9657147B152AFAE500C0FFC3 /* SettingViewController.xib */; };
 		967B345D152D2D7800918D21 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967B345B152D2D7800918D21 /* SignInViewController.m */; };
 		967B345E152D2D7800918D21 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967B345C152D2D7800918D21 /* SignInViewController.xib */; };
+		967B346B152D332000918D21 /* XMPPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 967B346A152D332000918D21 /* XMPPManager.m */; };
 		969D9984152AC82000A3CFAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9983152AC82000A3CFAB /* UIKit.framework */; };
 		969D9986152AC82000A3CFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9985152AC82000A3CFAB /* Foundation.framework */; };
 		969D9988152AC82000A3CFAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 969D9987152AC82000A3CFAB /* CoreGraphics.framework */; };
@@ -364,6 +365,8 @@
 		967B345A152D2D7800918D21 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		967B345B152D2D7800918D21 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		967B345C152D2D7800918D21 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		967B3469152D332000918D21 /* XMPPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPManager.h; path = Manager/XMPPManager.h; sourceTree = "<group>"; };
+		967B346A152D332000918D21 /* XMPPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPManager.m; path = Manager/XMPPManager.m; sourceTree = "<group>"; };
 		969D997F152AC82000A3CFAB /* TinyChatter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinyChatter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		969D9983152AC82000A3CFAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		969D9985152AC82000A3CFAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -938,10 +941,20 @@
 			path = "XEP-0203";
 			sourceTree = "<group>";
 		};
+		967B3468152D31BE00918D21 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				967B3469152D332000918D21 /* XMPPManager.h */,
+				967B346A152D332000918D21 /* XMPPManager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		969D9974152AC82000A3CFAB = {
 			isa = PBXGroup;
 			children = (
 				969D99B8152AC8C000A3CFAB /* Library */,
+				967B3468152D31BE00918D21 /* Manager */,
 				969D998B152AC82000A3CFAB /* TinyChatter */,
 				969D99A7152AC82000A3CFAB /* TinyChatterTests */,
 				969D9982152AC82000A3CFAB /* Frameworks */,
@@ -1459,6 +1472,7 @@
 				96571477152AFAAF00C0FFC3 /* ChatViewController.m in Sources */,
 				9657147C152AFAE500C0FFC3 /* SettingViewController.m in Sources */,
 				967B345D152D2D7800918D21 /* SignInViewController.m in Sources */,
+				967B346B152D332000918D21 /* XMPPManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
