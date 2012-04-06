@@ -108,6 +108,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     self = [super init];
     if (self) {
         [self setup];
+        [self setUpMisc];
     }
     return self;
 }
