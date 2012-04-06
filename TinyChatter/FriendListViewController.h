@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FriendListViewController : UIViewController
+@interface FriendListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@property (retain, nonatomic) IBOutlet UITableView *myTableView;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

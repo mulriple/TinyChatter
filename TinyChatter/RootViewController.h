@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class SignInViewController;
 @interface RootViewController : UITabBarController
+
+@property (nonatomic, retain) SignInViewController *signInViewController;
+@property (nonatomic, retain) UINavigationController *signInVCNav;
 
 @end

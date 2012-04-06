@@ -20,6 +20,8 @@
 #define REGISTER_COMPLETED_NOTIFICATION         @"com.cactuarsoft.tinychatter.registerCompleted"
 #define BUTTON_TEXT_FOR_SIGN_IN                 @"登入"
 #define BUTTON_TEXT_FOR_SIGN_OUT                @"登出"
+#define SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL     @"signInVCSignInSuccessful"
+
 
 #pragma mark - synthesize
 
@@ -63,6 +65,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"登入";
     }
     return self;
 }
@@ -136,6 +139,7 @@
             [SVProgressHUD dismissWithSuccess:message afterDelay:3.0f];
             [self.signInButton setTitle:BUTTON_TEXT_FOR_SIGN_OUT forState:UIControlStateNormal];
             [manager setUserId:self.userIdField.text password:self.userPasswordField.text];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL object:nil];
         } failure:^(FailureType errorType, NSError *error, NSString *message) {
             [SVProgressHUD dismissWithError:message afterDelay:5.0f];
         } end:^{

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
-#import "SignInViewController.h"
+
 
 @implementation AppDelegate
 
@@ -32,10 +32,18 @@
     // Override point for customization after application launch.
     
     // -------------------- Attempt01 --------------------
+    /*
+    #import "SignInViewController.h" // add this where appropriately
     SignInViewController *svc = [[[SignInViewController alloc] init] autorelease];
     UINavigationController *nav = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];
     nav.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.window.rootViewController = nav;
+     */
+    // ---------------------------------------------------
+    
+    // -------------------- Attempt02 --------------------
+    RootViewController *rvc = [[[RootViewController alloc] init] autorelease];
+    self.window.rootViewController = rvc;
     // ---------------------------------------------------
     
     // End override point
