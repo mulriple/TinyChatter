@@ -12,6 +12,7 @@
 		96198D541530415C009222BF /* XMPPChatHistoryCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D531530415C009222BF /* XMPPChatHistoryCoreDataStorage.m */; };
 		96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5C15306C68009222BF /* XMPPChatHistory.m */; };
 		96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */; };
+		96198D7E15309D67009222BF /* XMPPChatHistoryCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -197,6 +198,8 @@
 		96198D5C15306C68009222BF /* XMPPChatHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPChatHistory.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistory.m"; sourceTree = "<group>"; };
 		96198D5E15306CE8009222BF /* XMPPMessage+XEP0201.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMPPMessage+XEP0201.h"; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessage+XEP0201.h"; sourceTree = "<group>"; };
 		96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XMPPMessage+XEP0201.m"; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessage+XEP0201.m"; sourceTree = "<group>"; };
+		96198D7C15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPChatHistoryCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPChatHistoryCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorageObject.m"; sourceTree = "<group>"; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -572,6 +575,8 @@
 				96198D531530415C009222BF /* XMPPChatHistoryCoreDataStorage.m */,
 				96198D4F15303D1E009222BF /* XMPPMessageCoreDataStorageObject.h */,
 				96198D5015303D1E009222BF /* XMPPMessageCoreDataStorageObject.m */,
+				96198D7C15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.h */,
+				96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */,
 			);
 			name = CoreDataStorage;
 			sourceTree = "<group>";
@@ -1583,6 +1588,7 @@
 				96198D541530415C009222BF /* XMPPChatHistoryCoreDataStorage.m in Sources */,
 				96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */,
 				96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */,
+				96198D7E15309D67009222BF /* XMPPChatHistoryCoreDataStorageObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

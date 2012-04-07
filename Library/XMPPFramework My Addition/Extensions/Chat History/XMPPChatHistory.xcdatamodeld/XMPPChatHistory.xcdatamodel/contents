@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="XMPPChatHistoryCoreDataStorageObject" representedClassName="XMPPChatHistoryCoreDataStorageObject" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="jid" optional="YES" transient="YES" syncable="YES"/>
+        <attribute name="jidStr" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="lastMessage" attributeType="String" syncable="YES"/>
+        <attribute name="lastMessageFromMe" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastMessageFromMeTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastMessageIsFromMe" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="lastMessageTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="streamBareJidStr" attributeType="String" defaultValueString="0" indexed="YES" syncable="YES"/>
+    </entity>
     <entity name="XMPPMessageCoreDataStorageObject" representedClassName="XMPPMessageCoreDataStorageObject" syncable="YES">
         <attribute name="body" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="fromMe" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -11,9 +23,12 @@
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteTimestamp" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="streamBareJidStr" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="toJid" optional="YES" transient="YES" syncable="YES"/>
+        <attribute name="toJidStr" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="XMPPMessageCoreDataStorageObject" positionX="160" positionY="192" width="128" height="210"/>
+        <element name="XMPPMessageCoreDataStorageObject" positionX="160" positionY="192" width="128" height="240"/>
+        <element name="XMPPChatHistoryCoreDataStorageObject" positionX="160" positionY="192" width="128" height="195"/>
     </elements>
 </model>

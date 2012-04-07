@@ -34,6 +34,7 @@ NSAssert(dispatch_get_current_queue() == storageQueue, @"Private method: MUST ru
      */
 	
 	NSString *messageEntityName;
+    NSString *chatHistoryEntityName;
 	
 	NSTimeInterval maxMessageAge;
 	NSTimeInterval deleteInterval;
@@ -45,6 +46,7 @@ NSAssert(dispatch_get_current_queue() == storageQueue, @"Private method: MUST ru
 }
 
 - (NSEntityDescription *)messageEntity:(NSManagedObjectContext *)moc;
+- (NSEntityDescription *)chatHistoryEntityName:(NSManagedObjectContext *)moc;
 
 - (void)performDelete;
 - (void)destroyDeleteTimer;
@@ -76,6 +78,7 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 	// This method is invoked by all public init methods of the superclass
 	
 	messageEntityName = [NSStringFromClass([XMPPMessageCoreDataStorageObject class]) retain];
+    chatHistoryEntityName = [NSStringFromClass([XMPPChatHistoryCoreDataStorageObject class]) retain];
 	
 	maxMessageAge  = (60 * 60 * 24 * 7); // 7 days
 	deleteInterval = (60 * 5);           // 5 days
@@ -86,6 +89,10 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 - (void)dealloc
 {
 	[self destroyDeleteTimer];
+    [messageEntityName release];
+    [chatHistoryEntityName release];
+    [pausedMessageDeletion release];
+    
     [super dealloc];
 }
 
@@ -113,6 +120,34 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 {
 	dispatch_block_t block = ^{
 		messageEntityName = newMessageEntityName;
+	};
+	
+	if (dispatch_get_current_queue() == storageQueue)
+		block();
+	else
+		dispatch_async(storageQueue, block);
+}
+
+- (NSString *)chatHistoryEntityName
+{
+	__block NSString *result = nil;
+	
+	dispatch_block_t block = ^{
+		result = chatHistoryEntityName;
+	};
+	
+	if (dispatch_get_current_queue() == storageQueue)
+		block();
+	else
+		dispatch_sync(storageQueue, block);
+	
+	return result;
+}
+
+- (void)setChatHistoryEntityName:(NSString *)newMessageEntityName
+{
+	dispatch_block_t block = ^{
+		chatHistoryEntityName = newMessageEntityName;
 	};
 	
 	if (dispatch_get_current_queue() == storageQueue)
@@ -411,69 +446,17 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 #pragma mark Protected API
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/**
- * Optional override hook.
- **/
-- (BOOL)existsMessage:(XMPPMessage *)message stream:(XMPPStream *)xmppStream
-{
-	NSDate *remoteTimestamp = [message delayedDeliveryDate];
-	
-	if (remoteTimestamp == nil)
-	{
-		// When the xmpp server sends us a room message, it will always timestamp delayed messages.
-		// For example, when retrieving the discussion history, all messages will include the original timestamp.
-		// If a message doesn't include such timestamp, then we know we're getting it in "real time".
-		
-		return NO;
-	}
-	
-	// Does this message already exist in the database?
-	// How can we tell if two XMPPRoomMessages are the same?
-	// 
-	// 1. Same streamBareJidStr
-	// 2. Same jid
-	// 3. Same text
-	// 4. Approximately the same timestamps
-	// 
-	// This is actually a rather difficult question.
-	// What if the same user sends the exact same message multiple times?
-	// 
-	// If we first received the message while already in the room, it won't contain a remoteTimestamp.
-	// Returning to the room later and downloading the discussion history will return the same message,
-	// this time with a remote timestamp.
-	// 
-	// So if the message doesn't have a remoteTimestamp,
-	// but it's localTimestamp is approximately the same as the remoteTimestamp,
-	// then this is enough evidence to consider the messages the same.
-	// 
-	// Note: Predicate order matters. Most unique key should be first, least unique should be last.
-	
+- (BOOL)existsChatHistory:(XMPPMessage *)message stream:(XMPPStream *)xmppStream
+{	
 	NSManagedObjectContext *moc = [self managedObjectContext];
-	NSEntityDescription *messageEntity = [self messageEntity:moc];
-	
-	NSString *streamBareJidStr = [[self myJIDForXMPPStream:xmppStream] bare];
+	NSEntityDescription *chatHistoryEntity = [self chatHistoryEntityName:moc];
 	
 	XMPPJID *messageJID = [message from];
-	NSString *messageBody = [[message elementForName:@"body"] stringValue];
 	
-	NSDate *minLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval:-60];
-	NSDate *maxLocalTimestamp = [remoteTimestamp dateByAddingTimeInterval: 60];
-	
-	NSString *predicateFormat = @"    body == %@ "
-    @"AND jidStr == %@ "
-    @"AND streamBareJidStr == %@ "
-    @"AND "
-    @"("
-    @"     (remoteTimestamp == %@) "
-    @"  OR (remoteTimestamp == NIL && localTimestamp BETWEEN {%@, %@})"
-    @")";
-	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat,
-                              messageBody, messageJID, streamBareJidStr,
-                              remoteTimestamp, minLocalTimestamp, maxLocalTimestamp];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"jidStr == %@", messageJID];
 	
 	NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-	[fetchRequest setEntity:messageEntity];
+	[fetchRequest setEntity:chatHistoryEntity];
 	[fetchRequest setPredicate:predicate];
 	[fetchRequest setFetchLimit:1];
     
@@ -558,6 +541,54 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 	[self didInsertMessage:entityMessage]; // Hook if subclassing XMPPRoomCoreDataStorage
 }
 
+- (void)didInsertChatHistory:(XMPPChatHistoryCoreDataStorageObject *)chatHistory
+{
+	// Override me if you're extending the XMPPChatHistoryCoreDataStorage class to add additional properties.
+	// You can update your additional properties here.
+	// 
+	// At this point the standard properties have already been set.
+	// So you can, for example, access the XMPPMessage via message.message.
+}
+
+- (void)insertChatHistory:(XMPPMessage *)message stream:(XMPPStream *)xmppStream
+{
+	// Extract needed information
+	XMPPJID *messageJID = [message from];
+	
+	NSString *messageBody = [[message elementForName:@"body"] stringValue];
+	
+	NSManagedObjectContext *moc = [self managedObjectContext];
+	NSString *streamBareJidStr = [[self myJIDForXMPPStream:xmppStream] bare];
+	
+	NSEntityDescription *chatHistoryEntity = [self chatHistoryEntityName:moc];
+	
+	// Add to database
+    
+	XMPPChatHistoryCoreDataStorageObject *entityChatHistory = [(XMPPChatHistoryCoreDataStorageObject *)[[NSManagedObject alloc] initWithEntity:chatHistoryEntity insertIntoManagedObjectContext:nil] autorelease];
+    
+    /*
+     @property (nonatomic, retain) NSString      * displayName;
+     @property (nonatomic, retain) XMPPJID       * jid;              // Transient (proper type, not on disk)
+     @property (nonatomic, retain) NSString      * jidStr;           // Shadow (binary data, written to disk)
+     @property (nonatomic, retain) NSString      * nickname;
+     @property (nonatomic, retain) NSString      * streamBareJidStr;
+     @property (nonatomic, retain) NSString      * lastMessage;
+     @property (nonatomic, retain) NSDate        * lastMessageTime;
+     @property (nonatomic, retain) NSNumber      * lastMessageIsFromMe;
+     @property (nonatomic, assign) BOOL          isLastMessageFromMe;
+     */
+	
+	entityChatHistory.jid = messageJID;
+	//entityChatHistory.nickname = [messageJID resource];
+	entityChatHistory.streamBareJidStr = streamBareJidStr;
+    entityChatHistory.lastMessage = messageBody;
+    entityChatHistory.lastMessageTime = [NSDate date];
+    
+	
+	[moc insertObject:entityChatHistory];      // Hook if subclassing XMPPChatHistoryCoreDataStorageObject (awakeFromInsert)
+	[self didInsertChatHistory:entityChatHistory]; // Hook if subclassing XMPPChatHistoryCoreDataStorage
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Public API
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -567,6 +598,13 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 	// This method should be thread-safe.
 	// So be sure to access the entity name through the property accessor.
 	return [NSEntityDescription entityForName:[self messageEntityName] inManagedObjectContext:moc];
+}
+
+- (NSEntityDescription *)chatHistoryEntityName:(NSManagedObjectContext *)moc
+{
+	// This method should be thread-safe.
+	// So be sure to access the entity name through the property accessor.
+	return [NSEntityDescription entityForName:[self chatHistoryEntityName] inManagedObjectContext:moc];
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -580,6 +618,7 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 	[self scheduleBlock:^{
 		
 		[self insertMessage:message outgoing:YES stream:xmppStream];
+        
 	}];
 }
 
@@ -589,14 +628,12 @@ static XMPPChatHistoryCoreDataStorage *sharedInstance;
 	
 	[self scheduleBlock:^{
 		
-		if ([self existsMessage:message stream:xmppStream])
+		if ([self existsChatHistory:message stream:xmppStream] == NO)
 		{
-			XMPPLogVerbose(@"%@: %@ - Duplicate message", THIS_FILE, THIS_METHOD);
+			[self insertChatHistory:message stream:xmppStream];
 		}
-		else
-		{
-			[self insertMessage:message outgoing:NO stream:xmppStream];
-		}
+		
+        [self insertMessage:message outgoing:NO stream:xmppStream];
 	}];
 }
 

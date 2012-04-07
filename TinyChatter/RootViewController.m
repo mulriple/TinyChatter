@@ -82,17 +82,18 @@
     nav_flvc.navigationBar.barStyle = barStyle;
     [array addObject:nav_flvc];
     
-    /*
+    
     ChatListViewController *clvc = [[[ChatListViewController alloc] init] autorelease];
     UINavigationController *nav_clvc = [[[UINavigationController alloc] initWithRootViewController:clvc] autorelease];
     nav_clvc.navigationBar.barStyle = barStyle;
     [array addObject:nav_clvc];
-     */
-    
+     
+    /*
     ChatViewController *cvc = [[[ChatViewController alloc] init] autorelease];
     UINavigationController *nav_cvc = [[[UINavigationController alloc] initWithRootViewController:cvc] autorelease];
     nav_cvc.navigationBar.barStyle = barStyle;
     [array addObject:nav_cvc];
+     */
     
     SettingViewController *svc = [[[SettingViewController alloc] init] autorelease];
     UINavigationController *nav_svc = [[[UINavigationController alloc] initWithRootViewController:svc] autorelease];

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatListViewController : UIViewController
-
+@interface ChatListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@property (retain, nonatomic) IBOutlet UITableView *myTableView;
+@property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (retain, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @end

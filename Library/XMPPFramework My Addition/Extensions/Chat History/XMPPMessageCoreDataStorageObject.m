@@ -9,8 +9,10 @@
 #import "XMPPMessageCoreDataStorageObject.h"
 
 @interface XMPPMessageCoreDataStorageObject ()
-@property(nonatomic,strong) XMPPJID * primitiveJid;
-@property(nonatomic,strong) NSString * primitiveJidStr;
+@property(nonatomic, retain) XMPPJID    * primitiveJid;
+@property(nonatomic, retain) NSString   * primitiveJidStr;
+@property(nonatomic, retain) XMPPJID    * primitiveToJid;
+@property(nonatomic, retain) NSString   * primitiveToJidStr;
 @end
 
 
@@ -28,9 +30,14 @@
 @dynamic remoteTimestamp;
 @dynamic streamBareJidStr;
 @dynamic type;
+@dynamic toJid;
+@dynamic toJidStr;
 
 @dynamic primitiveJid;
 @dynamic primitiveJidStr;
+@dynamic primitiveToJid;
+@dynamic primitiveToJidStr;
+
 
 #pragma mark Transient jid
 
@@ -77,6 +84,51 @@
 	
 	[self didChangeValueForKey:@"jid"];
 	[self didChangeValueForKey:@"jidStr"];
+}
+
+- (XMPPJID *)toJid
+{
+	// Create and cache on demand
+	
+	[self willAccessValueForKey:@"toJid"];
+	XMPPJID *tmp = self.primitiveToJid;
+	[self didAccessValueForKey:@"toJid"];
+	
+	if (tmp == nil)
+	{
+		NSString *jidStr = self.toJidStr;
+		if (jidStr)
+		{
+			tmp = [XMPPJID jidWithString:jidStr];
+			self.primitiveToJid = tmp;
+		}
+	}
+	
+	return tmp;
+}
+
+- (void)setToJid:(XMPPJID *)jid
+{
+	[self willChangeValueForKey:@"toJid"];
+	[self willChangeValueForKey:@"toJidStr"];
+	
+	self.primitiveToJid = jid;
+	self.primitiveToJidStr = [jid full];
+	
+	[self didChangeValueForKey:@"toJid"];
+	[self didChangeValueForKey:@"toJidStr"];
+}
+
+- (void)setToJidStr:(NSString *)jidStr
+{
+	[self willChangeValueForKey:@"toJid"];
+	[self willChangeValueForKey:@"toJidStr"];
+	
+	self.primitiveToJid = [XMPPJID jidWithString:jidStr];
+	self.primitiveToJidStr = jidStr;
+	
+	[self didChangeValueForKey:@"toJid"];
+	[self didChangeValueForKey:@"toJidStr"];
 }
 
 #pragma mark Scalar

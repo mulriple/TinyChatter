@@ -24,6 +24,8 @@
 @property (nonatomic, retain) NSString      * streamBareJidStr; // not used(probably)
 @property (nonatomic, retain) NSNumber      * type;             // not used(for now)
 @property (nonatomic, retain) NSNumber      * fromMe;
+@property (nonatomic, retain) XMPPJID       * toJid;            // Transient (proper type, not on disk)
+@property (nonatomic, retain) NSString      * toJidStr;         // Shadow (binary data, written to disk)
 @property (nonatomic, assign) BOOL          isFromMe;
 
 @end

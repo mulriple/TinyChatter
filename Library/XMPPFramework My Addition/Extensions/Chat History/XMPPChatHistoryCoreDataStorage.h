@@ -10,6 +10,7 @@
 #import "XMPP.h"
 #import "XMPPChatHistory.h"
 #import "XMPPMessageCoreDataStorageObject.h"
+#import "XMPPChatHistoryCoreDataStorageObject.h"
 
 
 @interface XMPPChatHistoryCoreDataStorage : XMPPCoreDataStorage <XMPPChatHistoryStorage>
