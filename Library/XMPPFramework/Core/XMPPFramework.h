@@ -41,6 +41,9 @@
 #import "XMPPMUC.h"
 #import "XMPPRoomCoreDataStorage.h"
 
+#import "XMPPChatHistory.h"
+#import "XMPPChatHistoryCoreDataStorage.h"
+
 //#import "XMPPPubSub.h"
 //#import "XMPPTransports.h"
 

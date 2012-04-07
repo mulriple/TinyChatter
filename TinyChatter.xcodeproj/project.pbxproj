@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96198D4B15303A8F009222BF /* XMPPChatHistory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96198D4915303A8F009222BF /* XMPPChatHistory.xcdatamodeld */; };
+		96198D5115303D1E009222BF /* XMPPMessageCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5015303D1E009222BF /* XMPPMessageCoreDataStorageObject.m */; };
+		96198D541530415C009222BF /* XMPPChatHistoryCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D531530415C009222BF /* XMPPChatHistoryCoreDataStorage.m */; };
+		96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5C15306C68009222BF /* XMPPChatHistory.m */; };
+		96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -183,6 +188,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96198D4A15303A8F009222BF /* XMPPChatHistory.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPChatHistory.xcdatamodel; sourceTree = "<group>"; };
+		96198D4F15303D1E009222BF /* XMPPMessageCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPMessageCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessageCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		96198D5015303D1E009222BF /* XMPPMessageCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPMessageCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessageCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		96198D521530415C009222BF /* XMPPChatHistoryCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPChatHistoryCoreDataStorage.h; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorage.h"; sourceTree = "<group>"; };
+		96198D531530415C009222BF /* XMPPChatHistoryCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPChatHistoryCoreDataStorage.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorage.m"; sourceTree = "<group>"; };
+		96198D5B15306C67009222BF /* XMPPChatHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPChatHistory.h; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistory.h"; sourceTree = "<group>"; };
+		96198D5C15306C68009222BF /* XMPPChatHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPChatHistory.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistory.m"; sourceTree = "<group>"; };
+		96198D5E15306CE8009222BF /* XMPPMessage+XEP0201.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMPPMessage+XEP0201.h"; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessage+XEP0201.h"; sourceTree = "<group>"; };
+		96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XMPPMessage+XEP0201.m"; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessage+XEP0201.m"; sourceTree = "<group>"; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -371,7 +385,7 @@
 		96571479152AFAE500C0FFC3 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		9657147A152AFAE500C0FFC3 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		9657147B152AFAE500C0FFC3 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
-		96733C63152E80F0007A3E76 /* TinyChatterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; name = TinyChatterManager.h; path = Manager/TinyChatterManager.h; sourceTree = "<group>"; };
+		96733C63152E80F0007A3E76 /* TinyChatterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TinyChatterManager.h; path = Manager/TinyChatterManager.h; sourceTree = "<group>"; };
 		96733C64152E80F0007A3E76 /* TinyChatterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TinyChatterManager.m; path = Manager/TinyChatterManager.m; sourceTree = "<group>"; };
 		967A4949152D8F240040CF49 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		967A494A152D8F240040CF49 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
@@ -522,6 +536,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96198D4415303967009222BF /* XMPPFramework My Additions */ = {
+			isa = PBXGroup;
+			children = (
+				96198D4615303986009222BF /* Extensions */,
+			);
+			name = "XMPPFramework My Additions";
+			sourceTree = "<group>";
+		};
+		96198D4615303986009222BF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				96198D47153039A2009222BF /* Chat History */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		96198D47153039A2009222BF /* Chat History */ = {
+			isa = PBXGroup;
+			children = (
+				96198D48153039DD009222BF /* CoreDataStorage */,
+				96198D5B15306C67009222BF /* XMPPChatHistory.h */,
+				96198D5C15306C68009222BF /* XMPPChatHistory.m */,
+				96198D5E15306CE8009222BF /* XMPPMessage+XEP0201.h */,
+				96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */,
+			);
+			name = "Chat History";
+			sourceTree = "<group>";
+		};
+		96198D48153039DD009222BF /* CoreDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				96198D4915303A8F009222BF /* XMPPChatHistory.xcdatamodeld */,
+				96198D521530415C009222BF /* XMPPChatHistoryCoreDataStorage.h */,
+				96198D531530415C009222BF /* XMPPChatHistoryCoreDataStorage.m */,
+				96198D4F15303D1E009222BF /* XMPPMessageCoreDataStorageObject.h */,
+				96198D5015303D1E009222BF /* XMPPMessageCoreDataStorageObject.m */,
+			);
+			name = CoreDataStorage;
+			sourceTree = "<group>";
+		};
 		96571320152AE1B400C0FFC3 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1103,6 +1157,7 @@
 				96571349152AE21600C0FFC3 /* SVProgressHUD */,
 				9657136A152AE42E00C0FFC3 /* TestFlight-SDK */,
 				969D99B9152AC94F00A3CFAB /* XMPPFramework */,
+				96198D4415303967009222BF /* XMPPFramework My Additions */,
 			);
 			name = Library;
 			sourceTree = "<group>";
@@ -1523,6 +1578,11 @@
 				967A4960152D95E50040CF49 /* DismissKeyboardUITableView.m in Sources */,
 				967A4961152D95E50040CF49 /* DismissKeyboardView.m in Sources */,
 				96733C65152E80F0007A3E76 /* TinyChatterManager.m in Sources */,
+				96198D4B15303A8F009222BF /* XMPPChatHistory.xcdatamodeld in Sources */,
+				96198D5115303D1E009222BF /* XMPPMessageCoreDataStorageObject.m in Sources */,
+				96198D541530415C009222BF /* XMPPChatHistoryCoreDataStorage.m in Sources */,
+				96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */,
+				96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1716,6 +1776,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		96198D4915303A8F009222BF /* XMPPChatHistory.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96198D4A15303A8F009222BF /* XMPPChatHistory.xcdatamodel */,
+			);
+			currentVersion = 96198D4A15303A8F009222BF /* XMPPChatHistory.xcdatamodel */;
+			name = XMPPChatHistory.xcdatamodeld;
+			path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistory.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		965713BA152AEB1C00C0FFC3 /* XMPPRoom.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

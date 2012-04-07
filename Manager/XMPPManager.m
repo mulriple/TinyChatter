@@ -31,7 +31,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 @property (readwrite, nonatomic, copy) XMPPManagerSignInOperationEndBlock       signInEnd;
 - (void)setup;
 - (void)setupStream;
-- (void)setUpMisc;
+- (void)setupMisc;
 - (void)teardownStream;
 @end
 
@@ -53,8 +53,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 @synthesize xmppvCardAvatarModule;
 @synthesize xmppCapabilities;
 @synthesize xmppCapabilitiesStorage;
+@synthesize xmppChatHistory;
+@synthesize xmppChatHistoryStorage;
 @synthesize managedObjectContext_roster;
 @synthesize managedObjectContext_capabilities;
+@synthesize managedObjectContext_chatHistory;
 
 @synthesize signInBegin;
 @synthesize signInSuccess;
@@ -75,8 +78,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [xmppvCardAvatarModule release];
     [xmppCapabilities release];
     [xmppCapabilitiesStorage release];
+    [xmppChatHistory release];
+    [xmppChatHistoryStorage release];
     [managedObjectContext_roster release];
     [managedObjectContext_capabilities release];
+    [managedObjectContext_chatHistory release];
     [passord release];
     
     [signInBegin release];
@@ -108,7 +114,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     self = [super init];
     if (self) {
         [self setup];
-        [self setUpMisc];
+        [self setupMisc];
     }
     return self;
 }
@@ -141,14 +147,17 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     xmppRoster.autoFetchRoster = YES;
     xmppRoster.autoAcceptKnownPresenceSubscriptionRequests = YES;
     
-    xmppvCardStorage = [XMPPvCardCoreDataStorage sharedInstance];
+    xmppvCardStorage = [[XMPPvCardCoreDataStorage sharedInstance] retain];
     xmppvCardTempModule = [[XMPPvCardTempModule alloc] initWithvCardStorage:xmppvCardStorage];
     xmppvCardAvatarModule = [[XMPPvCardAvatarModule alloc] initWithvCardTempModule:xmppvCardTempModule];
     
-    xmppCapabilitiesStorage = [XMPPCapabilitiesCoreDataStorage sharedInstance];
+    xmppCapabilitiesStorage = [[XMPPCapabilitiesCoreDataStorage sharedInstance] retain];
     xmppCapabilities = [[XMPPCapabilities alloc] initWithCapabilitiesStorage:xmppCapabilitiesStorage];
     xmppCapabilities.autoFetchHashedCapabilities = YES;
     xmppCapabilities.autoFetchNonHashedCapabilities = NO;
+    
+    xmppChatHistoryStorage = [[XMPPChatHistoryCoreDataStorage sharedInstance] retain];
+    xmppChatHistory = [[XMPPChatHistory alloc] initWithChatHistoryStorage:xmppChatHistoryStorage];
     
     // activate xmpp modules
     [xmppReconnect          activate:xmppStream];
@@ -156,6 +165,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [xmppvCardTempModule    activate:xmppStream];
     [xmppvCardAvatarModule  activate:xmppStream];
     [xmppCapabilities       activate:xmppStream];
+    [xmppChatHistory        activate:xmppStream];
     
     // setup delegate
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -166,10 +176,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     allowSSLHostNameMismatch = NO;
 }
 
-- (void)setUpMisc
+- (void)setupMisc
 {
     self.managedObjectContext_roster = [xmppRosterStorage mainThreadManagedObjectContext]; 
     self.managedObjectContext_capabilities = [xmppCapabilitiesStorage mainThreadManagedObjectContext];
+    self.managedObjectContext_chatHistory = [xmppChatHistoryStorage mainThreadManagedObjectContext];
 }
 
 #pragma mark - action methods

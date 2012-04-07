@@ -25,6 +25,8 @@ typedef enum{
     XMPPvCardAvatarModule               * xmppvCardAvatarModule;
     XMPPCapabilities                    * xmppCapabilities;
     XMPPCapabilitiesCoreDataStorage     * xmppCapabilitiesStorage;
+    XMPPChatHistory                     * xmppChatHistory;
+    XMPPChatHistoryCoreDataStorage      * xmppChatHistoryStorage;
     
     NSString                            * passord;
     
@@ -35,7 +37,7 @@ typedef enum{
     
     NSManagedObjectContext *managedObjectContext_roster;
     NSManagedObjectContext *managedObjectContext_capabilities;
-    
+    NSManagedObjectContext *managedObjectContext_chatHistory;
 }
 
 @property (nonatomic, retain, readonly) XMPPStream                          * xmppStream;
@@ -47,9 +49,12 @@ typedef enum{
 @property (nonatomic, retain, readonly) XMPPvCardAvatarModule               * xmppvCardAvatarModule;
 @property (nonatomic, retain, readonly) XMPPCapabilities                    * xmppCapabilities;
 @property (nonatomic, retain, readonly) XMPPCapabilitiesCoreDataStorage     * xmppCapabilitiesStorage;
+@property (nonatomic, retain, readonly) XMPPChatHistory                     * xmppChatHistory;
+@property (nonatomic, retain, readonly) XMPPChatHistoryCoreDataStorage      * xmppChatHistoryStorage;
 
 @property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_roster;
 @property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_capabilities;
+@property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_chatHistory;
 
 + (XMPPManager *)sharedInstance;
 
