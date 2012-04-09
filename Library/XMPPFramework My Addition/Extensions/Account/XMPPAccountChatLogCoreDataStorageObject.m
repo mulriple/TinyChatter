@@ -21,4 +21,12 @@
 @dynamic toJidStr;
 @dynamic chatSession;
 
++ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context
+{
+    XMPPAccountChatLogCoreDataStorageObject *chatLog = [NSEntityDescription insertNewObjectForEntityForName:@"XMPPAccountChatLogCoreDataStorageObject" inManagedObjectContext:context];
+    chatLog.chatSession = aChatSession;
+    
+    return chatLog;
+}
+
 @end

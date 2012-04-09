@@ -20,8 +20,13 @@
 @property (nonatomic, retain) NSString * jsonSpec;
 @property (nonatomic, retain) NSDate * lastSignInTime;
 @property (nonatomic, retain) NSString * pwd;
+@property (nonatomic, retain) NSString * userId;
 @property (nonatomic, retain) NSSet *chatSessions;
 @property (nonatomic, retain) XMPPAccountSettingsCoreDataStorageObject *settings;
+
++ (XMPPAccountCoreDataStorageObject *)getAccountIfExistWithJid:(NSString *)aJid inManagedObjectContext:(NSManagedObjectContext *)context;
++ (XMPPAccountCoreDataStorageObject *)getOrCreateAccountWithJid:(NSString *)aJid inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface XMPPAccountCoreDataStorageObject (CoreDataGeneratedAccessors)

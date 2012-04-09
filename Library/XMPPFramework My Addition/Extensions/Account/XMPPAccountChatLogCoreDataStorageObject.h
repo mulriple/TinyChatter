@@ -22,4 +22,6 @@
 @property (nonatomic, retain) NSString * toJidStr;
 @property (nonatomic, retain) XMPPAccountChatSessionCoreDataStorageObject *chatSession;
 
++ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

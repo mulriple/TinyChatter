@@ -18,6 +18,10 @@
 @property (nonatomic, retain) NSString * recipientJid;
 @property (nonatomic, retain) XMPPAccountCoreDataStorageObject *account;
 @property (nonatomic, retain) NSSet *chatLogs;
+
++ (XMPPAccountChatSessionCoreDataStorageObject *)getChatSessionIfExistWithRecipientJid:(NSString *)aJid inManagedObjectContext:(NSManagedObjectContext *)context;
++ (XMPPAccountChatSessionCoreDataStorageObject *)getOrCreateChatSessionWithRecipientJid:(NSString *)aJid account:(XMPPAccountCoreDataStorageObject *)anAccount inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
 
 @interface XMPPAccountChatSessionCoreDataStorageObject (CoreDataGeneratedAccessors)

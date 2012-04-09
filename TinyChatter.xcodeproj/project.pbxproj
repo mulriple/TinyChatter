@@ -27,6 +27,8 @@
 		9635FD381532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */; };
 		9635FD3B1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD3A1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m */; };
 		9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */; };
+		9635FD451532E2260092F849 /* XMPPAccountCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD441532E2260092F849 /* XMPPAccountCoreDataStorage.m */; };
+		9635FD491532ECCF0092F849 /* XMPPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD481532ECCF0092F849 /* XMPPAccount.m */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -235,6 +237,10 @@
 		9635FD3A1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountChatSessionCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountChatSessionCoreDataStorageObject.m"; sourceTree = "<group>"; };
 		9635FD3C1532D2460092F849 /* XMPPAccountCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorageObject.h"; sourceTree = "<group>"; };
 		9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		9635FD431532E2260092F849 /* XMPPAccountCoreDataStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountCoreDataStorage.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorage.h"; sourceTree = "<group>"; };
+		9635FD441532E2260092F849 /* XMPPAccountCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountCoreDataStorage.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorage.m"; sourceTree = "<group>"; };
+		9635FD471532ECCF0092F849 /* XMPPAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccount.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccount.h"; sourceTree = "<group>"; };
+		9635FD481532ECCF0092F849 /* XMPPAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccount.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccount.m"; sourceTree = "<group>"; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -649,6 +655,10 @@
 			isa = PBXGroup;
 			children = (
 				9622CFCE1532C27300CA5F2F /* CoreDataStorage */,
+				9635FD431532E2260092F849 /* XMPPAccountCoreDataStorage.h */,
+				9635FD441532E2260092F849 /* XMPPAccountCoreDataStorage.m */,
+				9635FD471532ECCF0092F849 /* XMPPAccount.h */,
+				9635FD481532ECCF0092F849 /* XMPPAccount.m */,
 			);
 			name = Account;
 			sourceTree = "<group>";
@@ -1692,6 +1702,8 @@
 				9635FD381532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m in Sources */,
 				9635FD3B1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m in Sources */,
 				9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */,
+				9635FD451532E2260092F849 /* XMPPAccountCoreDataStorage.m in Sources */,
+				9635FD491532ECCF0092F849 /* XMPPAccount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
