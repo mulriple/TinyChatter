@@ -22,6 +22,11 @@
 		9622CFC51532847400CA5F2F /* textbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBF1532847400CA5F2F /* textbg~iphone.png */; };
 		9622CFC61532847400CA5F2F /* toolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */; };
 		9622CFC71532847400CA5F2F /* toolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */; };
+		9622CFD11532C34800CA5F2F /* XMPPAccount.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFCF1532C34800CA5F2F /* XMPPAccount.xcdatamodeld */; };
+		9635FD351532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD341532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m */; };
+		9635FD381532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */; };
+		9635FD3B1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD3A1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m */; };
+		9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -221,6 +226,15 @@
 		9622CFBF1532847400CA5F2F /* textbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/textbg~iphone.png"; sourceTree = SOURCE_ROOT; };
 		9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
 		9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFD01532C34800CA5F2F /* XMPPAccount.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPAccount.xcdatamodel; sourceTree = "<group>"; };
+		9635FD331532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountSettingsCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountSettingsCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		9635FD341532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountSettingsCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountSettingsCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		9635FD361532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountChatLogCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountChatLogCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountChatLogCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountChatLogCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		9635FD391532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountChatSessionCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountChatSessionCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		9635FD3A1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountChatSessionCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountChatSessionCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		9635FD3C1532D2460092F849 /* XMPPAccountCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorageObject.h"; sourceTree = "<group>"; };
+		9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorageObject.m"; sourceTree = "<group>"; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -571,6 +585,7 @@
 		96198D4615303986009222BF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9622CFCC1532C25700CA5F2F /* Account */,
 				96198D47153039A2009222BF /* Chat History */,
 			);
 			name = Extensions;
@@ -628,6 +643,30 @@
 				9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		9622CFCC1532C25700CA5F2F /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				9622CFCE1532C27300CA5F2F /* CoreDataStorage */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		9622CFCE1532C27300CA5F2F /* CoreDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				9622CFCF1532C34800CA5F2F /* XMPPAccount.xcdatamodeld */,
+				9635FD331532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.h */,
+				9635FD341532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m */,
+				9635FD3C1532D2460092F849 /* XMPPAccountCoreDataStorageObject.h */,
+				9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */,
+				9635FD391532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.h */,
+				9635FD3A1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m */,
+				9635FD361532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.h */,
+				9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */,
+			);
+			name = CoreDataStorage;
 			sourceTree = "<group>";
 		};
 		96571320152AE1B400C0FFC3 /* AFNetworking */ = {
@@ -1648,6 +1687,11 @@
 				9622CFB71532842F00CA5F2F /* UIExpandingTextView.m in Sources */,
 				9622CFB81532842F00CA5F2F /* UIExpandingTextViewInternal.m in Sources */,
 				9622CFB91532842F00CA5F2F /* UIInputToolbar.m in Sources */,
+				9622CFD11532C34800CA5F2F /* XMPPAccount.xcdatamodeld in Sources */,
+				9635FD351532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m in Sources */,
+				9635FD381532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m in Sources */,
+				9635FD3B1532D2460092F849 /* XMPPAccountChatSessionCoreDataStorageObject.m in Sources */,
+				9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1849,6 +1893,17 @@
 			currentVersion = 96198D4A15303A8F009222BF /* XMPPChatHistory.xcdatamodel */;
 			name = XMPPChatHistory.xcdatamodeld;
 			path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistory.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		9622CFCF1532C34800CA5F2F /* XMPPAccount.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9622CFD01532C34800CA5F2F /* XMPPAccount.xcdatamodel */,
+			);
+			currentVersion = 9622CFD01532C34800CA5F2F /* XMPPAccount.xcdatamodel */;
+			name = XMPPAccount.xcdatamodeld;
+			path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccount.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

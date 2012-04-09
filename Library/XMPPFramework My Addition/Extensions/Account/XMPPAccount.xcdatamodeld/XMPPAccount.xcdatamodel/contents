@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="XMPPAccountChatLogCoreDataStorageObject" representedClassName="XMPPAccountChatLogCoreDataStorageObject" syncable="YES">
+        <attribute name="addedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="delivered" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fromJidStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonSpec" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="readByRecipient" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="toJidStr" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chatSession" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountChatSessionCoreDataStorageObject" inverseName="chatLogs" inverseEntity="XMPPAccountChatSessionCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <entity name="XMPPAccountChatSessionCoreDataStorageObject" representedClassName="XMPPAccountChatSessionCoreDataStorageObject" syncable="YES">
+        <attribute name="addedDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lastActiveDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="recipientJid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountCoreDataStorageObject" inverseName="chatSessions" inverseEntity="XMPPAccountCoreDataStorageObject" syncable="YES"/>
+        <relationship name="chatLogs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="XMPPAccountChatLogCoreDataStorageObject" inverseName="chatSession" inverseEntity="XMPPAccountChatLogCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <entity name="XMPPAccountCoreDataStorageObject" representedClassName="XMPPAccountCoreDataStorageObject" syncable="YES">
+        <attribute name="accountType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="domain" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="jidStr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonSpec" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastSignInTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="pwd" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chatSessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="XMPPAccountChatSessionCoreDataStorageObject" inverseName="account" inverseEntity="XMPPAccountChatSessionCoreDataStorageObject" syncable="YES"/>
+        <relationship name="settings" optional="YES" minCount="1" maxCount="1" deletionRule="Cascade" destinationEntity="XMPPAccountSettingsCoreDataStorageObject" inverseName="account" inverseEntity="XMPPAccountSettingsCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <entity name="XMPPAccountSettingsCoreDataStorageObject" representedClassName="XMPPAccountSettingsCoreDataStorageObject" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="enablePush" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rememberPwd" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="rememberUserId" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountCoreDataStorageObject" inverseName="settings" inverseEntity="XMPPAccountCoreDataStorageObject" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="XMPPAccountChatLogCoreDataStorageObject" positionX="-173" positionY="-6" width="128" height="165"/>
+        <element name="XMPPAccountChatSessionCoreDataStorageObject" positionX="-198" positionY="-144" width="128" height="120"/>
+        <element name="XMPPAccountCoreDataStorageObject" positionX="-216" positionY="-270" width="128" height="180"/>
+        <element name="XMPPAccountSettingsCoreDataStorageObject" positionX="-9" positionY="-168" width="128" height="150"/>
+    </elements>
+</model>
