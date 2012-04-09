@@ -9,6 +9,7 @@
 #import "ChatListViewController.h"
 #import "XMPPManager.h"
 #import "DDLog.h"
+#import "ChatViewController.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -125,9 +126,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ChatViewController *cvc = [[ChatViewController alloc] init];
+    [self.navigationController pushViewController:cvc animated:YES];
+    [cvc release];
 }
 
 #pragma mark - UITableViewDataSource

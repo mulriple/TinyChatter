@@ -25,6 +25,7 @@
 - (void)setupManager;
 - (void)showSignInController;
 - (void)hideSignInController;
+- (void)showHideTabBar:(NSNotification *)notif;
 @end
 
 @implementation RootViewController
@@ -40,6 +41,10 @@
 #define MANAGER_NOTIFICATION_AUTO_SIGN_IN_FAILED        @"autoSignInFailed"
 #define MANAGER_NOTIFICATION_AUTO_SIGN_IN_END           @"autoSignInEnd"
 #define SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL             @"signInVCSignInSuccessful"
+
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR        @"showOrHideTabBar"
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE   @"hideTabBar"
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW   @"showTabBar"
 
 #pragma mark - synthesize
 
@@ -131,6 +136,11 @@
                selector:@selector(hideSignInController) 
                    name:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL 
                  object:nil];
+    
+    [center addObserver:self 
+               selector:@selector(showHideTabBar:) 
+                   name:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR 
+                 object:nil];
 }
 
 - (void)setupManager
@@ -215,6 +225,23 @@
 - (void)hideSignInController
 {
     [self.signInVCNav.view fadeOut:SIGN_IN_VC_ANIMATION_TRANSITION_TIME delegate:nil];
+}
+
+#pragma mark - tab bar related
+
+- (void)showHideTabBar:(NSNotification *)notif
+{
+    NSString *flag = (NSString *)[notif object];
+    
+    if([flag isEqualToString:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE])
+    {
+        self.tabBar.hidden = YES;
+    }
+    
+    if([flag isEqualToString:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW])
+    {
+        self.tabBar.hidden = NO;
+    }
 }
 
 @end

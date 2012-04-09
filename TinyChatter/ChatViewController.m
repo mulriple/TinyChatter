@@ -20,12 +20,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface ChatViewController ()
 - (void)setupListContent;
 - (void)setupTableView;
+- (void)hideTabBar;
+- (void)showTabBar;
 @end
 
-
-
 @implementation ChatViewController
+
 #pragma mark - define
+
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR                @"showOrHideTabBar"
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE           @"hideTabBar"
+#define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW           @"showTabBar"
 
 #pragma mark - synthesize
 
@@ -118,6 +123,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // e.g. self.myOutlet = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self hideTabBar];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self showTabBar];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -190,7 +207,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
-
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath 
@@ -223,9 +239,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
-
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 
 {
     [self.myTableView endUpdates];
 }
+
+#pragma mark - support methods
+
+- (void)hideTabBar
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR 
+                          object:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE];
+}
+
+- (void)showTabBar
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center postNotificationName:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR 
+                          object:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW];
+}
+
 @end
