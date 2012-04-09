@@ -129,6 +129,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatViewController *cvc = [[ChatViewController alloc] init];
+    XMPPChatHistoryCoreDataStorageObject *chatHistory = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+	cvc.recipient = chatHistory.jidStr;
+    
+    cvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cvc animated:YES];
     [cvc release];
 }

@@ -20,23 +20,36 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface ChatViewController ()
 - (void)setupListContent;
 - (void)setupTableView;
+- (void)setupInputToolbar;
 - (void)hideTabBar;
 - (void)showTabBar;
+- (void)subscribeForKeyboardEvents;
+- (void)unsubscribeFromKeyboardEvents;
 @end
 
 @implementation ChatViewController
 
 #pragma mark - define
 
+#define SELF_NAME @"ChatViewController"
+
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR                @"showOrHideTabBar"
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE           @"hideTabBar"
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW           @"showTabBar"
+
+#define kStatusBarHeight 20
+#define kDefaultToolbarHeight 40
+#define kKeyboardHeightPortrait 216
+#define kKeyboardHeightLandscape 140
 
 #pragma mark - synthesize
 
 @synthesize myTableView;
 @synthesize managedObjectContext;
 @synthesize fetchedResultsController;
+@synthesize inputToolbar;
+@synthesize keyboardIsVisible;
+@synthesize recipient;
 
 #pragma mark - dealloc
 
@@ -44,6 +57,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [myTableView release];
     [managedObjectContext release];
     [fetchedResultsController release];
+    [inputToolbar release];
+    [recipient release];
     
     [super dealloc];
 }
@@ -102,6 +117,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     self.myTableView.sectionIndexMinimumDisplayRowCount = NSIntegerMax;
 }
 
+- (void)setupInputToolbar
+{
+    self.keyboardIsVisible = NO;
+    
+    CGRect viewFrame = self.view.frame;
+    CGRect toolbarFrame = CGRectMake(0, viewFrame.size.height - kDefaultToolbarHeight, viewFrame.size.width, kDefaultToolbarHeight);
+    inputToolbar = [[UIInputToolbar alloc] initWithFrame:toolbarFrame];
+    inputToolbar.delegate = self;
+    inputToolbar.textView.placeholder = NSLocalizedString(@"type your message here...", SELF_NAME);
+    inputToolbar.textView.maximumNumberOfLines = 13;
+    
+    [self.view addSubview:inputToolbar];
+}
+
 #pragma mark - view lifecycle
 
 - (void)viewDidLoad
@@ -110,6 +139,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // Do any additional setup after loading the view from its nib.
     [self setupListContent];
     [self setupTableView];
+    [self setupInputToolbar];
 }
 
 - (void)viewDidUnload
@@ -117,6 +147,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self setMyTableView:nil];
     [self setManagedObjectContext:nil];
     [self setFetchedResultsController:nil];
+    [self setInputToolbar:nil];
+    [self setRecipient:nil];
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -126,13 +158,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self hideTabBar];
+    //[self hideTabBar];
+    [self subscribeForKeyboardEvents];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self showTabBar];
+    //[self showTabBar];
+    [self unsubscribeFromKeyboardEvents];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -242,6 +276,54 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 
 {
     [self.myTableView endUpdates];
+}
+
+#pragma mark - input views and keyboard
+
+- (void)subscribeForKeyboardEvents
+{
+    /* Listen for keyboard */
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)unsubscribeFromKeyboardEvents
+{
+    /* No longer listen for keyboard */
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification 
+{
+    /* Move the toolbar to above the keyboard */
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.inputToolbar.frame;
+        frame.origin.y = self.view.frame.size.height - frame.size.height - kKeyboardHeightPortrait;
+        self.inputToolbar.frame = frame;
+    }];
+    
+    keyboardIsVisible = YES;
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification 
+{
+    /* Move the toolbar back to bottom of the screen */
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.inputToolbar.frame;
+        frame.origin.y = self.view.frame.size.height - frame.size.height;
+        self.inputToolbar.frame = frame;
+    }];
+    
+    keyboardIsVisible = NO;
+}
+
+-(void)inputButtonPressed:(NSString *)inputText
+{
+    /* Called when toolbar button is pressed */
+    NSLog(@"Pressed button with text: '%@'", inputText);
+    XMPPManager *manager = [XMPPManager sharedInstance];
+    [manager sendChatMessage:inputText toJid:self.recipient];
 }
 
 #pragma mark - support methods

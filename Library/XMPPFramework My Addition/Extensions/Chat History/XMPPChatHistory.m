@@ -126,7 +126,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 		
 		XMPPMessage *message = [XMPPMessage message];
 		[message addAttributeWithName:@"to" stringValue:toJid];
-		[message addAttributeWithName:@"type" stringValue:@"groupchat"];
+		[message addAttributeWithName:@"type" stringValue:@"chat"];
 		[message addChild:body];
 		
 		[xmppStream sendElement:message];

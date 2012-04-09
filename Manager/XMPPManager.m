@@ -232,6 +232,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [xmppStream disconnect];
 }
 
+- (void)sendChatMessage:(NSString *)aMessage toJid:(NSString *)aJid
+{
+    [[self xmppChatHistory] sendMessage:aMessage to:aJid];
+}
+
 #pragma mark - support methods
 
 - (NSString *)getUserPassword

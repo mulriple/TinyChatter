@@ -13,6 +13,15 @@
 		96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5C15306C68009222BF /* XMPPChatHistory.m */; };
 		96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */; };
 		96198D7E15309D67009222BF /* XMPPChatHistoryCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */; };
+		9622CFB71532842F00CA5F2F /* UIExpandingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB21532842F00CA5F2F /* UIExpandingTextView.m */; };
+		9622CFB81532842F00CA5F2F /* UIExpandingTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB41532842F00CA5F2F /* UIExpandingTextViewInternal.m */; };
+		9622CFB91532842F00CA5F2F /* UIInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB61532842F00CA5F2F /* UIInputToolbar.m */; };
+		9622CFC21532847400CA5F2F /* buttonbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */; };
+		9622CFC31532847400CA5F2F /* buttonbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */; };
+		9622CFC41532847400CA5F2F /* textbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */; };
+		9622CFC51532847400CA5F2F /* textbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBF1532847400CA5F2F /* textbg~iphone.png */; };
+		9622CFC61532847400CA5F2F /* toolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */; };
+		9622CFC71532847400CA5F2F /* toolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -200,6 +209,18 @@
 		96198D5F15306CE9009222BF /* XMPPMessage+XEP0201.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XMPPMessage+XEP0201.m"; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPMessage+XEP0201.m"; sourceTree = "<group>"; };
 		96198D7C15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPChatHistoryCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorageObject.h"; sourceTree = "<group>"; };
 		96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPChatHistoryCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Chat History/XMPPChatHistoryCoreDataStorageObject.m"; sourceTree = "<group>"; };
+		9622CFB11532842F00CA5F2F /* UIExpandingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIExpandingTextView.h; sourceTree = "<group>"; };
+		9622CFB21532842F00CA5F2F /* UIExpandingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextView.m; sourceTree = "<group>"; };
+		9622CFB31532842F00CA5F2F /* UIExpandingTextViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIExpandingTextViewInternal.h; sourceTree = "<group>"; };
+		9622CFB41532842F00CA5F2F /* UIExpandingTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextViewInternal.m; sourceTree = "<group>"; };
+		9622CFB51532842F00CA5F2F /* UIInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputToolbar.h; sourceTree = "<group>"; };
+		9622CFB61532842F00CA5F2F /* UIInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIInputToolbar.m; sourceTree = "<group>"; };
+		9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/buttonbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/buttonbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/textbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBF1532847400CA5F2F /* textbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/textbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg~iphone.png"; sourceTree = SOURCE_ROOT; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -579,6 +600,34 @@
 				96198D7D15309D66009222BF /* XMPPChatHistoryCoreDataStorageObject.m */,
 			);
 			name = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		9622CFB01532842F00CA5F2F /* UIInputToolbar */ = {
+			isa = PBXGroup;
+			children = (
+				9622CFBB1532845B00CA5F2F /* images */,
+				9622CFB11532842F00CA5F2F /* UIExpandingTextView.h */,
+				9622CFB21532842F00CA5F2F /* UIExpandingTextView.m */,
+				9622CFB31532842F00CA5F2F /* UIExpandingTextViewInternal.h */,
+				9622CFB41532842F00CA5F2F /* UIExpandingTextViewInternal.m */,
+				9622CFB51532842F00CA5F2F /* UIInputToolbar.h */,
+				9622CFB61532842F00CA5F2F /* UIInputToolbar.m */,
+			);
+			name = UIInputToolbar;
+			path = Library/UIInputToolbar/UIInputToolbarSample/Classes/UIInputToolbar;
+			sourceTree = "<group>";
+		};
+		9622CFBB1532845B00CA5F2F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */,
+				9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */,
+				9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */,
+				9622CFBF1532847400CA5F2F /* textbg~iphone.png */,
+				9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */,
+				9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		96571320152AE1B400C0FFC3 /* AFNetworking */ = {
@@ -1155,6 +1204,7 @@
 		969D99B8152AC8C000A3CFAB /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				9622CFB01532842F00CA5F2F /* UIInputToolbar */,
 				96571320152AE1B400C0FFC3 /* AFNetworking */,
 				96571372152AE55200C0FFC3 /* EGOTableViewPullRefresh */,
 				96571353152AE27B00C0FFC3 /* FTUtils */,
@@ -1429,6 +1479,12 @@
 				967A4959152D900F0040CF49 /* buttonBg@2x.png in Resources */,
 				967A495A152D900F0040CF49 /* textFieldBg.png in Resources */,
 				967A495B152D900F0040CF49 /* textFieldBg@2x.png in Resources */,
+				9622CFC21532847400CA5F2F /* buttonbg@2x~iphone.png in Resources */,
+				9622CFC31532847400CA5F2F /* buttonbg~iphone.png in Resources */,
+				9622CFC41532847400CA5F2F /* textbg@2x~iphone.png in Resources */,
+				9622CFC51532847400CA5F2F /* textbg~iphone.png in Resources */,
+				9622CFC61532847400CA5F2F /* toolbarbg@2x~iphone.png in Resources */,
+				9622CFC71532847400CA5F2F /* toolbarbg~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1589,6 +1645,9 @@
 				96198D5D15306C6A009222BF /* XMPPChatHistory.m in Sources */,
 				96198D6015306CE9009222BF /* XMPPMessage+XEP0201.m in Sources */,
 				96198D7E15309D67009222BF /* XMPPChatHistoryCoreDataStorageObject.m in Sources */,
+				9622CFB71532842F00CA5F2F /* UIExpandingTextView.m in Sources */,
+				9622CFB81532842F00CA5F2F /* UIExpandingTextViewInternal.m in Sources */,
+				9622CFB91532842F00CA5F2F /* UIInputToolbar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

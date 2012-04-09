@@ -73,4 +73,6 @@ typedef enum{
                    end:(void (^)())end;
 - (void)disconnect;
 
+- (void)sendChatMessage:(NSString *)aMessage toJid:(NSString *)aJid;
+
 @end
