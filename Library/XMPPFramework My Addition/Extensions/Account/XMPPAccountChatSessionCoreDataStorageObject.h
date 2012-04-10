@@ -24,6 +24,7 @@
 
 + (XMPPAccountChatSessionCoreDataStorageObject *)getChatSessionIfExistWithSessionId:(NSString *)anID inManagedObjectContext:(NSManagedObjectContext *)context;
 + (XMPPAccountChatSessionCoreDataStorageObject *)getOrCreateChatSessionWithRecipientJid:(NSString *)aJid account:(XMPPAccountCoreDataStorageObject *)anAccount inManagedObjectContext:(NSManagedObjectContext *)context;
++ (NSString *)createSessionIdFromSelfJidBare:(NSString *)aSelfJidBare recipientJidBare:(NSString *)aRecipientJidBare;
 
 @end
 

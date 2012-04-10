@@ -41,7 +41,8 @@
 
 + (XMPPAccountChatSessionCoreDataStorageObject *)getOrCreateChatSessionWithRecipientJid:(NSString *)aJid account:(XMPPAccountCoreDataStorageObject *)anAccount inManagedObjectContext:(NSManagedObjectContext *)context;
 {
-    NSString *sessionId = [NSString stringWithFormat:@"%@ %@", anAccount.jidStr, aJid];
+    //NSString *sessionId = [NSString stringWithFormat:@"%@ %@", anAccount.jidStr, aJid];
+    NSString *sessionId = [self createSessionIdFromSelfJidBare:anAccount.jidStr recipientJidBare:aJid];
     
     XMPPAccountChatSessionCoreDataStorageObject *chatSession = [XMPPAccountChatSessionCoreDataStorageObject getChatSessionIfExistWithSessionId:sessionId inManagedObjectContext:context];
     
@@ -55,6 +56,11 @@
     }
     
     return chatSession;
+}
+
++ (NSString *)createSessionIdFromSelfJidBare:(NSString *)aSelfJidBare recipientJidBare:(NSString *)aRecipientJidBare
+{
+    return [NSString stringWithFormat:@"%@ %@", aSelfJidBare, aRecipientJidBare];
 }
 
 @end

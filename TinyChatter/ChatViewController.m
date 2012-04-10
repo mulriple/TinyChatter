@@ -26,6 +26,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)showTabBar;
 - (void)subscribeForKeyboardEvents;
 - (void)unsubscribeFromKeyboardEvents;
+- (void)scrollToIndexPath:(NSIndexPath *)aIndexPath;
 @end
 
 @implementation ChatViewController
@@ -43,7 +44,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #define kKeyboardHeightPortrait 216
 #define kKeyboardHeightLandscape 140
 
-#define MESSAGE_LABEL_WIDTH         180
+#define MESSAGE_LABEL_WIDTH         240
 #define MESSAGE_LABEL_MIN_HEIGHT    39
 
 #pragma mark - synthesize
@@ -194,7 +195,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XMPPAccountChatLogCoreDataStorageObject *message = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     CGFloat height = [message.body sizeWithFont:[UIFont boldSystemFontOfSize:13] constrainedToSize:CGSizeMake(MESSAGE_LABEL_WIDTH, 1000)].height + 10;
     
-    return height;
+    return MAX(44, height);
 }
 
 #pragma mark - UITableViewDataSource
@@ -284,6 +285,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
                              withRowAnimation:UITableViewRowAnimationFade];
+            [self performSelector:@selector(scrollToIndexPath:) withObject:newIndexPath afterDelay:0.3];
             break;
             
         case NSFetchedResultsChangeDelete:
@@ -332,6 +334,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         CGRect frame = self.inputToolbar.frame;
         frame.origin.y = self.view.frame.size.height - frame.size.height - kKeyboardHeightPortrait;
         self.inputToolbar.frame = frame;
+        CGRect frame2 = self.myTableView.frame;
+        frame2.size.height = 376 - kKeyboardHeightPortrait;
+        self.myTableView.frame = frame2;
     }];
     
     keyboardIsVisible = YES;
@@ -344,6 +349,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         CGRect frame = self.inputToolbar.frame;
         frame.origin.y = self.view.frame.size.height - frame.size.height;
         self.inputToolbar.frame = frame;
+        CGRect frame2 = self.myTableView.frame;
+        frame2.size.height = 376;
+        self.myTableView.frame = frame2;
     }];
     
     keyboardIsVisible = NO;
@@ -371,6 +379,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center postNotificationName:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR 
                           object:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW];
+}
+
+- (void)scrollToIndexPath:(NSIndexPath *)aIndexPath
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self.myTableView scrollToRowAtIndexPath:aIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 @end

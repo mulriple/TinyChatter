@@ -12,8 +12,9 @@
 
 #pragma mark - define
 
-#define MESSAGE_LABEL_WIDTH         180
+#define MESSAGE_LABEL_WIDTH         240
 #define MESSAGE_LABEL_MIN_HEIGHT    39
+#define SHOW_LAYER_BORDER(s) s.layer.borderWidth = 2.0f; s.layer.borderColor = [[UIColor redColor] CGColor];
 
 #pragma mark - synthesize
 
@@ -46,17 +47,19 @@
             messageLabel.textAlignment = UITextAlignmentLeft;
             messageLabel.numberOfLines = 0;
             [self.contentView addSubview:messageLabel];
+            //SHOW_LAYER_BORDER(messageLabel)
         }
         
         if(aMode == CellViewCellModeRightAlign)
         {
             messageLabel = [[UILabel alloc] init];
-            messageLabel.frame = CGRectMake(140, 5, MESSAGE_LABEL_WIDTH, MESSAGE_LABEL_MIN_HEIGHT);
+            messageLabel.frame = CGRectMake(320 - 5 - MESSAGE_LABEL_WIDTH, 5, MESSAGE_LABEL_WIDTH, MESSAGE_LABEL_MIN_HEIGHT);
             messageLabel.font = [UIFont boldSystemFontOfSize:13];
             messageLabel.backgroundColor = [UIColor clearColor];
             messageLabel.textAlignment = UITextAlignmentRight;
             messageLabel.numberOfLines = 0;
             [self.contentView addSubview:messageLabel];
+            //SHOW_LAYER_BORDER(messageLabel)
         }
     }
     return self;
@@ -67,11 +70,6 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        messageLabel = [[UILabel alloc] init];
-        messageLabel.frame = CGRectMake(5, 5, 180, 38);
-        messageLabel.font = [UIFont systemFontOfSize:12];
-        messageLabel.backgroundColor = [UIColor clearColor];
-        [self.contentView addSubview:messageLabel];
     }
     return self;
 }
@@ -86,7 +84,10 @@
 - (void)setMessage:(NSString *)aString
 {
     self.messageLabel.text = aString;
-    [self.messageLabel sizeToFit];
+    CGFloat height = [aString sizeWithFont:[UIFont boldSystemFontOfSize:13] constrainedToSize:CGSizeMake(MESSAGE_LABEL_WIDTH, 1000)].height;
+    CGRect frame = self.messageLabel.frame;
+    frame.size.height = height + 4;
+    self.messageLabel.frame = frame;
 }
 
 @end

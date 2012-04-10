@@ -22,6 +22,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface ChatListViewController ()
 - (void)setupListContent;
 - (void)setupTableView;
+- (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)aIndexPath;
 @end
 
 
@@ -139,6 +140,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ChatViewController *cvc = [[ChatViewController alloc] init];
     XMPPAccountChatSessionCoreDataStorageObject *chatSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 	cvc.chatSession = chatSession.sessionId;
@@ -230,7 +233,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             break;
             
         case NSFetchedResultsChangeUpdate:
-            //[self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -245,6 +248,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller 
 {
     [self.myTableView endUpdates];
+}
+
+#pragma mark - support methods
+
+- (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)aIndexPath
+{
+    XMPPAccountChatSessionCoreDataStorageObject *chatSession = [[self fetchedResultsController] objectAtIndexPath:aIndexPath];
+	aCell.textLabel.text = chatSession.recipientJid;
+    aCell.detailTextLabel.text = chatSession.latestMessage;
 }
 
 @end
