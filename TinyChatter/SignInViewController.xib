@@ -51,7 +51,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg.png</string>
+							<string key="NSResourceName">cbg.png</string>
 						</object>
 					</object>
 					<object class="IBUIScrollView" id="145385193">
@@ -72,9 +72,9 @@
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage" id="664166906">
+										<object class="NSCustomResource" key="IBUIImage" id="964326102">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">textFieldBg.png</string>
+											<string key="NSResourceName">ctextFieldBg.png</string>
 										</object>
 									</object>
 									<object class="IBUIImageView" id="1060614465">
@@ -87,7 +87,7 @@
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="664166906"/>
+										<reference key="IBUIImage" ref="964326102"/>
 									</object>
 									<object class="IBUILabel" id="36732880">
 										<reference key="NSNextResponder" ref="421264900"/>
@@ -236,9 +236,9 @@
 											<int key="NSColorSpace">3</int>
 											<bytes key="NSWhite">MC41AA</bytes>
 										</object>
-										<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="1007990270">
+										<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="308820809">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">buttonBg.png</string>
+											<string key="NSResourceName">cbuttonBg.png</string>
 										</object>
 										<object class="IBUIFontDescription" key="IBUIFontDescription" id="997351660">
 											<int key="type">2</int>
@@ -256,6 +256,7 @@
 										<string key="NSFrame">{{30, 240}, {260, 21}}</string>
 										<reference key="NSSuperview" ref="421264900"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:328</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -297,7 +298,7 @@
 										<reference key="IBUIHighlightedTitleColor" ref="264721817"/>
 										<reference key="IBUINormalTitleColor" ref="264721817"/>
 										<reference key="IBUINormalTitleShadowColor" ref="902312795"/>
-										<reference key="IBUINormalBackgroundImage" ref="1007990270"/>
+										<reference key="IBUINormalBackgroundImage" ref="308820809"/>
 										<reference key="IBUIFontDescription" ref="997351660"/>
 										<reference key="IBUIFont" ref="871592459"/>
 									</object>
@@ -641,9 +642,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="bg.png">{320, 480}</string>
-			<string key="buttonBg.png">{278, 45}</string>
-			<string key="textFieldBg.png">{275, 50}</string>
+			<string key="cbg.png">{320, 480}</string>
+			<string key="cbuttonBg.png">{278, 45}</string>
+			<string key="ctextFieldBg.png">{275, 50}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
