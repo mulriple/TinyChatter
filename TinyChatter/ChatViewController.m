@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "XMPPManager.h"
 #import "DDLog.h"
+#import "ChatViewCell.h"
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -42,6 +43,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #define kKeyboardHeightPortrait 216
 #define kKeyboardHeightLandscape 140
 
+#define MESSAGE_LABEL_WIDTH         180
+#define MESSAGE_LABEL_MIN_HEIGHT    39
+
 #pragma mark - synthesize
 
 @synthesize myTableView;
@@ -50,6 +54,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @synthesize inputToolbar;
 @synthesize keyboardIsVisible;
 @synthesize recipient;
+@synthesize chatSession;
 
 #pragma mark - dealloc
 
@@ -59,6 +64,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [fetchedResultsController release];
     [inputToolbar release];
     [recipient release];
+    [chatSession release];
     
     [super dealloc];
 }
@@ -78,15 +84,22 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)setupListContent
 {
     XMPPManager *manager = [XMPPManager sharedInstance];
-    self.managedObjectContext = manager.managedObjectContext_chatHistory;
+    self.managedObjectContext = manager.managedObjectContext_account;
     
     // setup fetch request
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPMessageCoreDataStorageObject" inManagedObjectContext:self.managedObjectContext];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init]; 
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPAccountChatLogCoreDataStorageObject" inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
+    
+    // setup nspredicate
+    if(self.chatSession)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sessionId == %@", self.chatSession];
+        [fetchRequest setPredicate:predicate];
+    }
 	
 	// setup sorting
-	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"localTimestamp" ascending:YES] autorelease];
+	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"addedDate" ascending:YES] autorelease];
 	[fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sort1, nil]];
 	[fetchRequest setFetchBatchSize:10];
 	
@@ -176,9 +189,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark - UITableViewDelegate
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    XMPPAccountChatLogCoreDataStorageObject *message = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    CGFloat height = [message.body sizeWithFont:[UIFont boldSystemFontOfSize:13] constrainedToSize:CGSizeMake(MESSAGE_LABEL_WIDTH, 1000)].height + 10;
     
+    return height;
 }
 
 #pragma mark - UITableViewDataSource
@@ -203,18 +219,33 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ChatViewCell";
+    static NSString *CellIdentifierLeft = @"ChatViewCellLeft";
+    static NSString *CellIdentifierRight = @"ChatViewCellRight";
     
-    UITableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    XMPPAccountChatLogCoreDataStorageObject *message = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     
-    if(cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+    if([message.fromMe boolValue] == YES)
+    {
+        ChatViewCell *cell = (ChatViewCell*)[self.myTableView dequeueReusableCellWithIdentifier:CellIdentifierRight];
+        if(cell == nil) {
+            cell = [[[ChatViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierRight mode:CellViewCellModeRightAlign] autorelease];
+        }
+        
+        [cell setMessage:message.body];
+        
+        return cell;
     }
-    
-    XMPPMessageCoreDataStorageObject *message = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	cell.textLabel.text = message.body;
-    
-    return cell;
+    else
+    {
+        ChatViewCell *cell = (ChatViewCell*)[self.myTableView dequeueReusableCellWithIdentifier:CellIdentifierLeft];
+        if(cell == nil) {
+            cell = [[[ChatViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierLeft mode:CellViewCellModeLeftAlign] autorelease];
+        }
+        
+        [cell setMessage:message.body];
+        
+        return cell;
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

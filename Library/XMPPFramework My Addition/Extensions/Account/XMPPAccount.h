@@ -32,7 +32,7 @@
 
 #pragma mark Chat Interaction
 
-- (void)sendMessage:(NSString *)msg to:(NSString *)toJid;
+- (void)sendMessage:(NSString *)msg to:(NSString *)toJid from:(NSString *)fromJid;
 
 @end
 
@@ -41,7 +41,7 @@
 @required
 
 - (BOOL)configureWithParent:(XMPPAccount *)aParent queue:(dispatch_queue_t)queue;
-
+- (void)handleAuthenticateSuccessful:(XMPPStream *)xmppStream;
 - (void)handleIncomingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream;
 - (void)handleOutgoingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream;
 

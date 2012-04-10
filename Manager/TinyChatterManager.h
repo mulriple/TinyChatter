@@ -11,6 +11,7 @@
 @interface TinyChatterManager : NSObject
 
 - (void)startAutoSignInService;
+- (NSString *)getCurrentAccountJid;
 
 + (TinyChatterManager *)sharedInstance;
 

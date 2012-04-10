@@ -27,8 +27,11 @@ typedef enum{
     XMPPCapabilitiesCoreDataStorage     * xmppCapabilitiesStorage;
     XMPPChatHistory                     * xmppChatHistory;
     XMPPChatHistoryCoreDataStorage      * xmppChatHistoryStorage;
+    XMPPAccount                         * xmppAccount;
+    XMPPAccountCoreDataStorage          * xmppAccountStorage;
     
     NSString                            * passord;
+    XMPPJID                             * myJid;
     
     BOOL allowSelfSignedCertificates;
     BOOL allowSSLHostNameMismatch;
@@ -38,6 +41,7 @@ typedef enum{
     NSManagedObjectContext *managedObjectContext_roster;
     NSManagedObjectContext *managedObjectContext_capabilities;
     NSManagedObjectContext *managedObjectContext_chatHistory;
+    NSManagedObjectContext *managedObjectContext_account;
 }
 
 @property (nonatomic, retain, readonly) XMPPStream                          * xmppStream;
@@ -51,10 +55,14 @@ typedef enum{
 @property (nonatomic, retain, readonly) XMPPCapabilitiesCoreDataStorage     * xmppCapabilitiesStorage;
 @property (nonatomic, retain, readonly) XMPPChatHistory                     * xmppChatHistory;
 @property (nonatomic, retain, readonly) XMPPChatHistoryCoreDataStorage      * xmppChatHistoryStorage;
+@property (nonatomic, retain, readonly) XMPPAccount                         * xmppAccount;
+@property (nonatomic, retain, readonly) XMPPAccountCoreDataStorage          * xmppAccountStorage;
+@property (nonatomic, copy, readwrite) XMPPJID                              * myJid;
 
 @property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_roster;
 @property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_capabilities;
 @property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_chatHistory;
+@property (nonatomic, retain) NSManagedObjectContext * managedObjectContext_account;
 
 + (XMPPManager *)sharedInstance;
 
@@ -63,6 +71,7 @@ typedef enum{
 
 - (NSString *)getUserPassword;
 - (NSString *)getUserId;
+- (NSString *)getCurrentAccountJidBare;
 - (void)setUserId:(NSString *)anId password:(NSString *)aPw;
 
 - (void)signInWithJID:(NSString *)myJID 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIInputToolbar.h"
 
+
 @interface ChatViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, UIInputToolbarDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *myTableView;
 @property (retain, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -16,4 +17,5 @@
 @property (retain, nonatomic) UIInputToolbar *inputToolbar;
 @property (assign, nonatomic) BOOL keyboardIsVisible;
 @property (retain, nonatomic) NSString *recipient;
+@property (retain, nonatomic) NSString *chatSession;
 @end

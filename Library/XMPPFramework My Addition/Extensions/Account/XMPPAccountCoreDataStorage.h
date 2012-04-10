@@ -11,8 +11,9 @@
 #import "XMPPAccountSettingsCoreDataStorageObject.h"
 #import "XMPPAccountChatSessionCoreDataStorageObject.h"
 #import "XMPPAccountChatLogCoreDataStorageObject.h"
+#import "XMPPAccount.h"
 
-@interface XMPPAccountCoreDataStorage : XMPPCoreDataStorage
+@interface XMPPAccountCoreDataStorage : XMPPCoreDataStorage <XMPPAccountStorage>
 
 @property (retain, readwrite) NSString *accountEntityName;
 @property (retain, readwrite) NSString *accountSettingsEntityName;

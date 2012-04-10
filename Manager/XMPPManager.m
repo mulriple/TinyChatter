@@ -55,9 +55,13 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 @synthesize xmppCapabilitiesStorage;
 @synthesize xmppChatHistory;
 @synthesize xmppChatHistoryStorage;
+@synthesize xmppAccount;
+@synthesize xmppAccountStorage;
 @synthesize managedObjectContext_roster;
 @synthesize managedObjectContext_capabilities;
 @synthesize managedObjectContext_chatHistory;
+@synthesize managedObjectContext_account;
+@synthesize myJid;
 
 @synthesize signInBegin;
 @synthesize signInSuccess;
@@ -80,9 +84,12 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [xmppCapabilitiesStorage release];
     [xmppChatHistory release];
     [xmppChatHistoryStorage release];
+    [xmppAccount release];
+    [xmppAccountStorage release];
     [managedObjectContext_roster release];
     [managedObjectContext_capabilities release];
     [managedObjectContext_chatHistory release];
+    [managedObjectContext_account release];
     [passord release];
     
     [signInBegin release];
@@ -159,13 +166,17 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     xmppChatHistoryStorage = [[XMPPChatHistoryCoreDataStorage sharedInstance] retain];
     xmppChatHistory = [[XMPPChatHistory alloc] initWithChatHistoryStorage:xmppChatHistoryStorage];
     
+    xmppAccountStorage = [[XMPPAccountCoreDataStorage sharedInstance] retain];
+    xmppAccount = [[XMPPAccount alloc] initWithAccountStorage:xmppAccountStorage];
+    
     // activate xmpp modules
     [xmppReconnect          activate:xmppStream];
     [xmppRoster             activate:xmppStream];
     [xmppvCardTempModule    activate:xmppStream];
     [xmppvCardAvatarModule  activate:xmppStream];
     [xmppCapabilities       activate:xmppStream];
-    [xmppChatHistory        activate:xmppStream];
+    //[xmppChatHistory        activate:xmppStream];
+    [xmppAccount            activate:xmppStream];
     
     // setup delegate
     [xmppStream addDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -181,6 +192,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     self.managedObjectContext_roster = [xmppRosterStorage mainThreadManagedObjectContext]; 
     self.managedObjectContext_capabilities = [xmppCapabilitiesStorage mainThreadManagedObjectContext];
     self.managedObjectContext_chatHistory = [xmppChatHistoryStorage mainThreadManagedObjectContext];
+    self.managedObjectContext_account = [xmppAccountStorage mainThreadManagedObjectContext];
 }
 
 #pragma mark - action methods
@@ -234,7 +246,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 
 - (void)sendChatMessage:(NSString *)aMessage toJid:(NSString *)aJid
 {
-    [[self xmppChatHistory] sendMessage:aMessage to:aJid];
+    [[self xmppAccount] sendMessage:aMessage to:aJid from:[[self myJid] full]];
 }
 
 #pragma mark - support methods
@@ -247,6 +259,12 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
 - (NSString *)getUserId
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:USERDEFAULT_KEY_USER_ID];
+}
+
+- (NSString *)getCurrentAccountJidBare
+{
+    XMPPJID *jid = [XMPPJID jidWithString:[self getUserId]];
+    return [jid bare];
 }
 
 - (void)setUserId:(NSString *)anId password:(NSString *)aPw
@@ -318,7 +336,7 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     DDLogVerbose(@"%@: %@", THIS_FILE, THIS_METHOD);
     [self signInSuccess](@"Signed In!");
     [self signInEnd]();
-    
+    self.myJid = [sender myJID];
     [self goOnline];
 }
 

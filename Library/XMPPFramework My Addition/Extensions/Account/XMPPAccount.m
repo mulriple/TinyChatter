@@ -10,6 +10,8 @@
 #import "XMPPFramework.h"
 #import "XMPPIDTracker.h"
 #import "XMPPLogging.h"
+#import "XMPPElement+Delay.h"
+#import "XMPPElement+LegacyDelay.h"
 
 // Log levels: off, error, warn, info, verbose
 // Log flags: trace
@@ -81,7 +83,9 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 	return xmppAccountStorage;
 }
 
-- (void)sendMessage:(NSString *)msg to:(NSString *)toJid
+#pragma mark - Message
+
+- (void)sendMessage:(NSString *)msg to:(NSString *)toJid from:(NSString *)fromJid
 {
 	if ([msg length] == 0) return;
 	
@@ -89,7 +93,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 		
 		XMPPLogTrace();
 		
-		// <message type='groupchat' to='darkcave@chat.shakespeare.lit/firstwitch'>
+		// <message type='chat' to='darkcave@chat.shakespeare.lit/firstwitch'>
 		//   <body>I'll give thee a wind.</body>
 		// </message>
         
@@ -97,6 +101,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 		
 		XMPPMessage *message = [XMPPMessage message];
 		[message addAttributeWithName:@"to" stringValue:toJid];
+        [message addAttributeWithName:@"from" stringValue:fromJid];
 		[message addAttributeWithName:@"type" stringValue:@"chat"];
 		[message addChild:body];
 		
@@ -110,9 +115,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 		dispatch_async(moduleQueue, block);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark XMPPStream Delegate
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - XMPPStream Delegate
 
 - (void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
@@ -120,7 +123,7 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 	
 	XMPPLogTrace();
     
-    // Add stuff to account storage
+    [xmppAccountStorage handleAuthenticateSuccessful:sender];
 }
 
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
@@ -128,22 +131,11 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 	// This method is invoked on the moduleQueue.
 	
 	XMPPLogTrace();
-	
-	// Is this a message we need to store (a chat message)?
-	// 
-	// A message to all recipients MUST be of type groupchat.
-	// A message to an individual recipient would have a <body/>.
-	
-	BOOL isChatMessage = [message isChatMessageWithBody];
-	
-	if (isChatMessage)
-	{
-		[xmppAccountStorage handleIncomingMessage:message xmppStream:sender];
-	}
-	else
-	{
-		// Todo... Handle other types of messages.
-	}
+    
+    if([message isChatMessageWithBody] || [message wasDelayed] || [message wasDelayedLegacy])
+    {
+        [xmppAccountStorage handleIncomingMessage:message xmppStream:sender];
+    }
 }
 
 - (void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
@@ -153,10 +145,6 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
 	XMPPLogTrace();
 	
 	// Is this a message we need to store (a chat message)?
-	// 
-	// A message to all recipients MUST be of type groupchat.
-	// A message to an individual recipient would have a <body/>.
-	
 	BOOL isChatMessage = [message isChatMessageWithBody];
 	
 	if (isChatMessage)

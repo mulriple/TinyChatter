@@ -11,6 +11,7 @@
 #import "DDLog.h"
 #import "ChatViewController.h"
 
+
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
@@ -59,15 +60,25 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)setupListContent
 {
     XMPPManager *manager = [XMPPManager sharedInstance];
-    self.managedObjectContext = manager.managedObjectContext_chatHistory;
+    self.managedObjectContext = manager.managedObjectContext_account;
+    
+    // get the current user
+    NSString *accountJidBare = [[XMPPManager sharedInstance] getCurrentAccountJidBare];
     
     // setup fetch request
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPChatHistoryCoreDataStorageObject" inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"XMPPAccountChatSessionCoreDataStorageObject" inManagedObjectContext:self.managedObjectContext];
 	[fetchRequest setEntity:entity];
+    
+    // setup predicate
+    if(accountJidBare)
+    {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"accountJid == %@", accountJidBare];
+        [fetchRequest setPredicate:predicate];
+    }
 	
 	// setup sorting
-	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"lastMessageTime" ascending:YES] autorelease];
+	NSSortDescriptor *sort1 = [[[NSSortDescriptor alloc] initWithKey:@"addedDate" ascending:YES] autorelease];
 	[fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sort1, nil]];
 	[fetchRequest setFetchBatchSize:10];
 	
@@ -129,8 +140,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatViewController *cvc = [[ChatViewController alloc] init];
-    XMPPChatHistoryCoreDataStorageObject *chatHistory = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	cvc.recipient = chatHistory.jidStr;
+    XMPPAccountChatSessionCoreDataStorageObject *chatSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+	cvc.chatSession = chatSession.sessionId;
+    cvc.recipient = chatSession.recipientJid;
     
     cvc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:cvc animated:YES];
@@ -167,9 +179,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    XMPPChatHistoryCoreDataStorageObject *chatHistory = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	cell.textLabel.text = chatHistory.jidStr;
-    cell.detailTextLabel.text = chatHistory.lastMessage;
+    XMPPAccountChatSessionCoreDataStorageObject *chatSession = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+	cell.textLabel.text = chatSession.recipientJid;
+    cell.detailTextLabel.text = chatSession.latestMessage;
     
     return cell;
 }

@@ -20,6 +20,8 @@
 @property (nonatomic, retain) NSString * jsonSpec;
 @property (nonatomic, retain) NSNumber * readByRecipient;
 @property (nonatomic, retain) NSString * toJidStr;
+@property (nonatomic, retain) NSString * sessionId;
+@property (nonatomic, retain) NSNumber * fromMe;
 @property (nonatomic, retain) XMPPAccountChatSessionCoreDataStorageObject *chatSession;
 
 + (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context;

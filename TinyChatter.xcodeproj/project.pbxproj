@@ -16,12 +16,12 @@
 		9622CFB71532842F00CA5F2F /* UIExpandingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB21532842F00CA5F2F /* UIExpandingTextView.m */; };
 		9622CFB81532842F00CA5F2F /* UIExpandingTextViewInternal.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB41532842F00CA5F2F /* UIExpandingTextViewInternal.m */; };
 		9622CFB91532842F00CA5F2F /* UIInputToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFB61532842F00CA5F2F /* UIInputToolbar.m */; };
-		9622CFC21532847400CA5F2F /* buttonbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */; };
-		9622CFC31532847400CA5F2F /* buttonbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */; };
-		9622CFC41532847400CA5F2F /* textbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */; };
-		9622CFC51532847400CA5F2F /* textbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBF1532847400CA5F2F /* textbg~iphone.png */; };
-		9622CFC61532847400CA5F2F /* toolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */; };
-		9622CFC71532847400CA5F2F /* toolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */; };
+		9622CFC21532847400CA5F2F /* ibuttonbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBC1532847400CA5F2F /* ibuttonbg@2x~iphone.png */; };
+		9622CFC31532847400CA5F2F /* ibuttonbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBD1532847400CA5F2F /* ibuttonbg~iphone.png */; };
+		9622CFC41532847400CA5F2F /* itextbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBE1532847400CA5F2F /* itextbg@2x~iphone.png */; };
+		9622CFC51532847400CA5F2F /* itextbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFBF1532847400CA5F2F /* itextbg~iphone.png */; };
+		9622CFC61532847400CA5F2F /* itoolbarbg@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC01532847400CA5F2F /* itoolbarbg@2x~iphone.png */; };
+		9622CFC71532847400CA5F2F /* itoolbarbg~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9622CFC11532847400CA5F2F /* itoolbarbg~iphone.png */; };
 		9622CFD11532C34800CA5F2F /* XMPPAccount.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9622CFCF1532C34800CA5F2F /* XMPPAccount.xcdatamodeld */; };
 		9635FD351532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD341532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m */; };
 		9635FD381532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */; };
@@ -29,6 +29,8 @@
 		9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD3D1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m */; };
 		9635FD451532E2260092F849 /* XMPPAccountCoreDataStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD441532E2260092F849 /* XMPPAccountCoreDataStorage.m */; };
 		9635FD491532ECCF0092F849 /* XMPPAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 9635FD481532ECCF0092F849 /* XMPPAccount.m */; };
+		9636D14115341036000853CD /* XMPPElement+LegacyDelay.m in Sources */ = {isa = PBXBuildFile; fileRef = 9636D14015341036000853CD /* XMPPElement+LegacyDelay.m */; };
+		9636D14415343B7F000853CD /* ChatViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9636D14315343B7E000853CD /* ChatViewCell.m */; };
 		96571336152AE1B400C0FFC3 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571322152AE1B400C0FFC3 /* AFHTTPClient.m */; };
 		96571337152AE1B400C0FFC3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571324152AE1B400C0FFC3 /* AFHTTPRequestOperation.m */; };
 		96571338152AE1B400C0FFC3 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 96571326152AE1B400C0FFC3 /* AFImageRequestOperation.m */; };
@@ -222,12 +224,12 @@
 		9622CFB41532842F00CA5F2F /* UIExpandingTextViewInternal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIExpandingTextViewInternal.m; sourceTree = "<group>"; };
 		9622CFB51532842F00CA5F2F /* UIInputToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputToolbar.h; sourceTree = "<group>"; };
 		9622CFB61532842F00CA5F2F /* UIInputToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIInputToolbar.m; sourceTree = "<group>"; };
-		9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/buttonbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
-		9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "buttonbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/buttonbg~iphone.png"; sourceTree = SOURCE_ROOT; };
-		9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/textbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
-		9622CFBF1532847400CA5F2F /* textbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "textbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/textbg~iphone.png"; sourceTree = SOURCE_ROOT; };
-		9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
-		9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/toolbarbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBC1532847400CA5F2F /* ibuttonbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ibuttonbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/ibuttonbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBD1532847400CA5F2F /* ibuttonbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ibuttonbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/ibuttonbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBE1532847400CA5F2F /* itextbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itextbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/itextbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFBF1532847400CA5F2F /* itextbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itextbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/itextbg~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFC01532847400CA5F2F /* itoolbarbg@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itoolbarbg@2x~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/itoolbarbg@2x~iphone.png"; sourceTree = SOURCE_ROOT; };
+		9622CFC11532847400CA5F2F /* itoolbarbg~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "itoolbarbg~iphone.png"; path = "Library/UIInputToolbar/UIInputToolbarSample/Resources/itoolbarbg~iphone.png"; sourceTree = SOURCE_ROOT; };
 		9622CFD01532C34800CA5F2F /* XMPPAccount.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = XMPPAccount.xcdatamodel; sourceTree = "<group>"; };
 		9635FD331532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccountSettingsCoreDataStorageObject.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountSettingsCoreDataStorageObject.h"; sourceTree = "<group>"; };
 		9635FD341532D2150092F849 /* XMPPAccountSettingsCoreDataStorageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountSettingsCoreDataStorageObject.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountSettingsCoreDataStorageObject.m"; sourceTree = "<group>"; };
@@ -241,6 +243,10 @@
 		9635FD441532E2260092F849 /* XMPPAccountCoreDataStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccountCoreDataStorage.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccountCoreDataStorage.m"; sourceTree = "<group>"; };
 		9635FD471532ECCF0092F849 /* XMPPAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPAccount.h; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccount.h"; sourceTree = "<group>"; };
 		9635FD481532ECCF0092F849 /* XMPPAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMPPAccount.m; path = "Library/XMPPFramework My Addition/Extensions/Account/XMPPAccount.m"; sourceTree = "<group>"; };
+		9636D13F15341036000853CD /* XMPPElement+LegacyDelay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMPPElement+LegacyDelay.h"; path = "Library/XMPPFramework My Addition/Extensions/XEP-0091/XMPPElement+LegacyDelay.h"; sourceTree = "<group>"; };
+		9636D14015341036000853CD /* XMPPElement+LegacyDelay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "XMPPElement+LegacyDelay.m"; path = "Library/XMPPFramework My Addition/Extensions/XEP-0091/XMPPElement+LegacyDelay.m"; sourceTree = "<group>"; };
+		9636D14215343B7E000853CD /* ChatViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewCell.h; sourceTree = "<group>"; };
+		9636D14315343B7E000853CD /* ChatViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewCell.m; sourceTree = "<group>"; };
 		96571321152AE1B400C0FFC3 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		96571322152AE1B400C0FFC3 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		96571323152AE1B400C0FFC3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -591,6 +597,7 @@
 		96198D4615303986009222BF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9636D13C15340F91000853CD /* XEP-0091 */,
 				9622CFCC1532C25700CA5F2F /* Account */,
 				96198D47153039A2009222BF /* Chat History */,
 			);
@@ -641,12 +648,12 @@
 		9622CFBB1532845B00CA5F2F /* images */ = {
 			isa = PBXGroup;
 			children = (
-				9622CFBC1532847400CA5F2F /* buttonbg@2x~iphone.png */,
-				9622CFBD1532847400CA5F2F /* buttonbg~iphone.png */,
-				9622CFBE1532847400CA5F2F /* textbg@2x~iphone.png */,
-				9622CFBF1532847400CA5F2F /* textbg~iphone.png */,
-				9622CFC01532847400CA5F2F /* toolbarbg@2x~iphone.png */,
-				9622CFC11532847400CA5F2F /* toolbarbg~iphone.png */,
+				9622CFBC1532847400CA5F2F /* ibuttonbg@2x~iphone.png */,
+				9622CFBD1532847400CA5F2F /* ibuttonbg~iphone.png */,
+				9622CFBE1532847400CA5F2F /* itextbg@2x~iphone.png */,
+				9622CFBF1532847400CA5F2F /* itextbg~iphone.png */,
+				9622CFC01532847400CA5F2F /* itoolbarbg@2x~iphone.png */,
+				9622CFC11532847400CA5F2F /* itoolbarbg~iphone.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -677,6 +684,15 @@
 				9635FD371532D2450092F849 /* XMPPAccountChatLogCoreDataStorageObject.m */,
 			);
 			name = CoreDataStorage;
+			sourceTree = "<group>";
+		};
+		9636D13C15340F91000853CD /* XEP-0091 */ = {
+			isa = PBXGroup;
+			children = (
+				9636D13F15341036000853CD /* XMPPElement+LegacyDelay.h */,
+				9636D14015341036000853CD /* XMPPElement+LegacyDelay.m */,
+			);
+			name = "XEP-0091";
 			sourceTree = "<group>";
 		};
 		96571320152AE1B400C0FFC3 /* AFNetworking */ = {
@@ -1210,6 +1226,8 @@
 				9657146F152AFAA200C0FFC3 /* ChatListViewController.h */,
 				96571470152AFAA200C0FFC3 /* ChatListViewController.m */,
 				96571471152AFAA200C0FFC3 /* ChatListViewController.xib */,
+				9636D14215343B7E000853CD /* ChatViewCell.h */,
+				9636D14315343B7E000853CD /* ChatViewCell.m */,
 				96571474152AFAAF00C0FFC3 /* ChatViewController.h */,
 				96571475152AFAAF00C0FFC3 /* ChatViewController.m */,
 				96571476152AFAAF00C0FFC3 /* ChatViewController.xib */,
@@ -1528,12 +1546,12 @@
 				967A4959152D900F0040CF49 /* buttonBg@2x.png in Resources */,
 				967A495A152D900F0040CF49 /* textFieldBg.png in Resources */,
 				967A495B152D900F0040CF49 /* textFieldBg@2x.png in Resources */,
-				9622CFC21532847400CA5F2F /* buttonbg@2x~iphone.png in Resources */,
-				9622CFC31532847400CA5F2F /* buttonbg~iphone.png in Resources */,
-				9622CFC41532847400CA5F2F /* textbg@2x~iphone.png in Resources */,
-				9622CFC51532847400CA5F2F /* textbg~iphone.png in Resources */,
-				9622CFC61532847400CA5F2F /* toolbarbg@2x~iphone.png in Resources */,
-				9622CFC71532847400CA5F2F /* toolbarbg~iphone.png in Resources */,
+				9622CFC21532847400CA5F2F /* ibuttonbg@2x~iphone.png in Resources */,
+				9622CFC31532847400CA5F2F /* ibuttonbg~iphone.png in Resources */,
+				9622CFC41532847400CA5F2F /* itextbg@2x~iphone.png in Resources */,
+				9622CFC51532847400CA5F2F /* itextbg~iphone.png in Resources */,
+				9622CFC61532847400CA5F2F /* itoolbarbg@2x~iphone.png in Resources */,
+				9622CFC71532847400CA5F2F /* itoolbarbg~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1704,6 +1722,8 @@
 				9635FD3E1532D2460092F849 /* XMPPAccountCoreDataStorageObject.m in Sources */,
 				9635FD451532E2260092F849 /* XMPPAccountCoreDataStorage.m in Sources */,
 				9635FD491532ECCF0092F849 /* XMPPAccount.m in Sources */,
+				9636D14115341036000853CD /* XMPPElement+LegacyDelay.m in Sources */,
+				9636D14415343B7F000853CD /* ChatViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

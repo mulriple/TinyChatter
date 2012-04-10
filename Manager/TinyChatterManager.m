@@ -64,6 +64,11 @@ static TinyChatterManager *singletonManager = nil;
     
 }
 
+- (NSString *)getCurrentAccountJid
+{
+    return [[XMPPManager sharedInstance] getCurrentAccountJidBare];
+}
+
 #pragma mark - singleton implementation code
 
 + (TinyChatterManager *)sharedInstance {

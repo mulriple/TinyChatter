@@ -20,11 +20,14 @@
 @dynamic readByRecipient;
 @dynamic toJidStr;
 @dynamic chatSession;
+@dynamic sessionId;
+@dynamic fromMe;
 
 + (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context
 {
     XMPPAccountChatLogCoreDataStorageObject *chatLog = [NSEntityDescription insertNewObjectForEntityForName:@"XMPPAccountChatLogCoreDataStorageObject" inManagedObjectContext:context];
     chatLog.chatSession = aChatSession;
+    chatLog.sessionId = aChatSession.sessionId;
     
     return chatLog;
 }

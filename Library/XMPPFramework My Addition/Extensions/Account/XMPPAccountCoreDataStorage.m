@@ -10,6 +10,8 @@
 #import "XMPPCoreDataStorageProtected.h"
 #import "XMPPElement+Delay.h"
 #import "XMPPLogging.h"
+#import "XMPPElement+LegacyDelay.h"
+
 
 // Log levels: off, error, warn, info, verbose
 #if DEBUG
@@ -69,9 +71,7 @@ static XMPPAccountCoreDataStorage *sharedInstance;
     [super dealloc];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark Configuration
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - (NSString *)accountEntityName
 {
@@ -185,19 +185,56 @@ static XMPPAccountCoreDataStorage *sharedInstance;
 		dispatch_async(storageQueue, block);
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Overrides
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Overrides
 
 - (void)didCreateManagedObjectContext
 {
 	XMPPLogTrace();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark Public API
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - Support method
+
+- (void)insertMessage:(XMPPMessage *)message outgoing:(BOOL)isOutgoing stream:(XMPPStream *)xmppStream
+{
+    // Extract needed information
+    XMPPJID *from = [message from];
+    XMPPJID *to = [message to];
+    NSString *messageBody = [[message elementForName:@"body"] stringValue];
+    NSDate *messageDate = [NSDate date];
+    
+    if([message wasDelayed] == YES)
+    {
+        messageDate = [message delayedDeliveryDate];
+    }
+    
+    if([message wasDelayedLegacy] == YES)
+    {
+        messageDate = [message delayedDeliveryDateLegacy];
+    }
+    
+    NSString *accountStr = (isOutgoing ==  YES) ? [from bare] : [to bare];
+    NSString *recipientStr = (isOutgoing ==  YES) ? [to bare] : [from bare];
+    
+    // get the the account
+    XMPPAccountCoreDataStorageObject *account = [XMPPAccountCoreDataStorageObject getOrCreateAccountWithJid:accountStr inManagedObjectContext:self.managedObjectContext];
+    
+    // check if the chat session exists or not
+    XMPPAccountChatSessionCoreDataStorageObject *session = [XMPPAccountChatSessionCoreDataStorageObject getOrCreateChatSessionWithRecipientJid:recipientStr account:account inManagedObjectContext:self.managedObjectContext];
+    session.lastActiveDate = [NSDate date];
+    session.latestMessage = messageBody;
+    
+    // add the message log to the session
+    XMPPAccountChatLogCoreDataStorageObject *log = [XMPPAccountChatLogCoreDataStorageObject createChatLogWithChatSession:session nManagedObjectContext:self.managedObjectContext];
+    log.addedDate = messageDate;
+    log.body = messageBody;
+    log.delivered = [NSNumber numberWithBool:NO];
+    log.fromJidStr = [from bare];
+    log.toJidStr = [to bare];
+    log.readByRecipient = [NSNumber numberWithBool:NO];
+    log.fromMe = [NSNumber numberWithBool:isOutgoing];
+}
+
+#pragma mark - Public API
 
 - (NSEntityDescription *)accountEntity:(NSManagedObjectContext *)managedObjectContext
 {
@@ -219,8 +256,43 @@ static XMPPAccountCoreDataStorage *sharedInstance;
 	return [NSEntityDescription entityForName:[self accountChatLogEntityName] inManagedObjectContext:managedObjectContext];
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#pragma mark XMPPRoomStorage Protocol
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark - XMPPAccountStorage Protocol
+
+- (void)handleAuthenticateSuccessful:(XMPPStream *)xmppStream
+{
+    XMPPLogTrace();
+	
+	[self scheduleBlock:^{
+        
+        XMPPJID *jid = [xmppStream myJID];
+		
+		XMPPAccountCoreDataStorageObject *account = [XMPPAccountCoreDataStorageObject getOrCreateAccountWithJid:[jid bare] inManagedObjectContext:self.managedObjectContext];
+        account.domain = [xmppStream hostName];
+        account.lastSignInTime = [NSDate date];
+        account.userId = jid.bare;
+	}];
+}
+
+- (void)handleOutgoingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream
+{
+	XMPPLogTrace();
+	
+	[self scheduleBlock:^{
+		
+		[self insertMessage:message outgoing:YES stream:xmppStream];
+        
+	}];
+}
+
+- (void)handleIncomingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream
+{
+	XMPPLogTrace();
+	
+	[self scheduleBlock:^{
+        
+        [self insertMessage:message outgoing:NO stream:xmppStream];
+        
+	}];
+}
 
 @end

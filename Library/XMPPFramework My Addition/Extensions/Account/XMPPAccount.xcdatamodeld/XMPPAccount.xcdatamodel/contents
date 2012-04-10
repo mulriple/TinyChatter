@@ -5,15 +5,20 @@
         <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="delivered" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="fromJidStr" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="fromMe" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="jsonSpec" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="readByRecipient" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="sessionId" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="toJidStr" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="chatSession" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountChatSessionCoreDataStorageObject" inverseName="chatLogs" inverseEntity="XMPPAccountChatSessionCoreDataStorageObject" syncable="YES"/>
     </entity>
     <entity name="XMPPAccountChatSessionCoreDataStorageObject" representedClassName="XMPPAccountChatSessionCoreDataStorageObject" syncable="YES">
+        <attribute name="accountJid" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="addedDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="lastActiveDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="latestMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recipientJid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="sessionId" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountCoreDataStorageObject" inverseName="chatSessions" inverseEntity="XMPPAccountCoreDataStorageObject" syncable="YES"/>
         <relationship name="chatLogs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="XMPPAccountChatLogCoreDataStorageObject" inverseName="chatSession" inverseEntity="XMPPAccountChatLogCoreDataStorageObject" syncable="YES"/>
     </entity>
@@ -40,7 +45,7 @@
         <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountCoreDataStorageObject" inverseName="settings" inverseEntity="XMPPAccountCoreDataStorageObject" syncable="YES"/>
     </entity>
     <elements>
-        <element name="XMPPAccountChatLogCoreDataStorageObject" positionX="-173" positionY="-6" width="128" height="165"/>
+        <element name="XMPPAccountChatLogCoreDataStorageObject" positionX="-173" positionY="-6" width="128" height="195"/>
         <element name="XMPPAccountChatSessionCoreDataStorageObject" positionX="-198" positionY="-144" width="128" height="120"/>
         <element name="XMPPAccountCoreDataStorageObject" positionX="-216" positionY="-270" width="128" height="180"/>
         <element name="XMPPAccountSettingsCoreDataStorageObject" positionX="-9" positionY="-168" width="128" height="165"/>

@@ -44,6 +44,9 @@
 #import "XMPPChatHistory.h"
 #import "XMPPChatHistoryCoreDataStorage.h"
 
+#import "XMPPAccount.h"
+#import "XMPPAccountCoreDataStorage.h"
+
 //#import "XMPPPubSub.h"
 //#import "XMPPTransports.h"
 
