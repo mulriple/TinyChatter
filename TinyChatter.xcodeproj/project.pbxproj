@@ -481,7 +481,6 @@
 		96A5AAAA15358DCD00B76FBB /* XMPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPP.h; sourceTree = "<group>"; };
 		96A5AAAB15358DCD00B76FBB /* XMPPElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPElement.h; sourceTree = "<group>"; };
 		96A5AAAC15358DCD00B76FBB /* XMPPElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPElement.m; sourceTree = "<group>"; };
-		96A5AAAD15358DCD00B76FBB /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
 		96A5AAAE15358DCD00B76FBB /* XMPPInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPInternal.h; sourceTree = "<group>"; };
 		96A5AAAF15358DCD00B76FBB /* XMPPIQ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPIQ.h; sourceTree = "<group>"; };
 		96A5AAB015358DCD00B76FBB /* XMPPIQ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPIQ.m; sourceTree = "<group>"; };
@@ -1316,7 +1315,6 @@
 				96A5AAAA15358DCD00B76FBB /* XMPP.h */,
 				96A5AAAB15358DCD00B76FBB /* XMPPElement.h */,
 				96A5AAAC15358DCD00B76FBB /* XMPPElement.m */,
-				96A5AAAD15358DCD00B76FBB /* XMPPFramework.h */,
 				96A5AAAE15358DCD00B76FBB /* XMPPInternal.h */,
 				96A5AAAF15358DCD00B76FBB /* XMPPIQ.h */,
 				96A5AAB015358DCD00B76FBB /* XMPPIQ.m */,
