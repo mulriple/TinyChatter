@@ -24,6 +24,7 @@
 - (void)setupNotification;
 - (void)setupManager;
 - (void)showHideTabBar:(NSNotification *)notif;
+- (void)handleSignInEvent;
 @end
 
 @implementation RootViewController
@@ -133,7 +134,7 @@
                  object:nil];
     
     [center addObserver:self 
-               selector:@selector(hideSignInController) 
+               selector:@selector(handleSignInEvent) 
                    name:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL 
                  object:nil];
     
@@ -217,6 +218,15 @@
                          afterDelay:HUD_MESSAGE_DURATION];
     
     [self showSignInController];
+}
+
+- (void)handleSignInEvent
+{
+    // 1. dismiss the sign in view controller
+    [self hideSignInController];
+    
+    // 2. set the active tab to friend list view controller (1 at the moment)
+    self.selectedIndex = 1;
 }
 
 #pragma mark - sign in view controller related

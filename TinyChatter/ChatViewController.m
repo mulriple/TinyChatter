@@ -19,6 +19,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
 @interface ChatViewController ()
+- (void)setupNotification;
 - (void)setupListContent;
 - (void)setupTableView;
 - (void)setupInputToolbar;
@@ -27,6 +28,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)subscribeForKeyboardEvents;
 - (void)unsubscribeFromKeyboardEvents;
 - (void)scrollToIndexPath:(NSIndexPath *)aIndexPath;
+- (void)removeSelf;
 @end
 
 @implementation ChatViewController
@@ -47,6 +49,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #define MESSAGE_LABEL_WIDTH         240
 #define MESSAGE_LABEL_MIN_HEIGHT    39
 
+#define SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL             @"signInVCSignInSuccessful"
+
 #pragma mark - synthesize
 
 @synthesize myTableView;
@@ -60,6 +64,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - dealloc
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [myTableView release];
     [managedObjectContext release];
     [fetchedResultsController release];
@@ -80,6 +85,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         self.title = @"聊天";
     }
     return self;
+}
+
+- (void)setupNotification
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    // we need remove ourself if there is a sign in event took place
+    [center addObserver:self 
+               selector:@selector(removeSelf)
+                   name:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL 
+                 object:nil];
 }
 
 - (void)setupListContent
@@ -151,6 +167,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setupNotification];
     [self setupListContent];
     [self setupTableView];
     [self setupInputToolbar];
@@ -385,6 +402,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     [self.myTableView scrollToRowAtIndexPath:aIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
+- (void)removeSelf
+{
+    
 }
 
 @end

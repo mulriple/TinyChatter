@@ -22,6 +22,3 @@
 [submodule "Library/XMPPFramework-linked"]
 	path = Library/XMPPFramework-linked
 	url = git://github.com/robbiehanson/XMPPFramework.git
-[submodule "Library/UIInputToolbar"]
-	path = Library/UIInputToolbar
-	url = git://github.com/brandonhamilton/inputtoolbar.git

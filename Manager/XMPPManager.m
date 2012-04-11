@@ -275,6 +275,13 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [userDefault synchronize];
 }
 
+- (void)clearSavedPassword
+{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setObject:@"" forKey:USERDEFAULT_KEY_USER_PW];
+    [userDefault synchronize];
+}
+
 #pragma mark - XMPPStreamDelegate
 
 - (void)xmppStream:(XMPPStream *)sender socketDidConnect:(GCDAsyncSocket *)socket

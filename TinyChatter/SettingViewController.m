@@ -143,6 +143,10 @@
 {
     [[XMPPManager sharedInstance] disconnect];
     [[NSNotificationCenter defaultCenter] postNotificationName:USER_ACTION_SIGN_OUT object:nil];
+    
+    // remove saved pw
+    XMPPManager *manager = [XMPPManager sharedInstance];
+    [manager clearSavedPassword];
 }
 
 @end

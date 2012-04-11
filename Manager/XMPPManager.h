@@ -73,6 +73,7 @@ typedef enum{
 - (NSString *)getUserId;
 - (NSString *)getCurrentAccountJidBare;
 - (void)setUserId:(NSString *)anId password:(NSString *)aPw;
+- (void)clearSavedPassword;
 
 - (void)signInWithJID:(NSString *)myJID 
                    pwd:(NSString *)myPwd 

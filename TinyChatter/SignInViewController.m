@@ -137,7 +137,7 @@
             self.signInButton.enabled = NO;
         } success:^(NSString *message) {
             [SVProgressHUD dismissWithSuccess:message afterDelay:3.0f];
-            [self.signInButton setTitle:BUTTON_TEXT_FOR_SIGN_OUT forState:UIControlStateNormal];
+            //[self.signInButton setTitle:BUTTON_TEXT_FOR_SIGN_OUT forState:UIControlStateNormal];
             [manager setUserId:self.userIdField.text password:self.userPasswordField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL object:nil];
         } failure:^(FailureType errorType, NSError *error, NSString *message) {

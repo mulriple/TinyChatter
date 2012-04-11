@@ -20,6 +20,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
 @interface ChatListViewController ()
+- (void)setupNotification;
 - (void)setupListContent;
 - (void)setupTableView;
 - (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)aIndexPath;
@@ -30,6 +31,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 #pragma mark - define
 
+#define SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL             @"signInVCSignInSuccessful"
+
 #pragma mark - synthesize
 
 @synthesize myTableView;
@@ -39,6 +42,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark - dealloc
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [myTableView release];
     [managedObjectContext release];
     [fetchedResultsController release];
@@ -56,6 +60,17 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         self.title = @"聊天室";
     }
     return self;
+}
+
+- (void)setupNotification
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    
+    // we need to reload chat list the when there is a sign in event
+    [center addObserver:self 
+               selector:@selector(setupListContent)
+                   name:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL 
+                 object:nil];
 }
 
 - (void)setupListContent
@@ -116,6 +131,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setupNotification];
     [self setupListContent];
     [self setupTableView];
 }
