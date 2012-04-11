@@ -14,4 +14,7 @@
 @property (nonatomic, retain) SignInViewController *signInViewController;
 @property (nonatomic, retain) UINavigationController *signInVCNav;
 
+- (void)showSignInController;
+- (void)hideSignInController;
+
 @end

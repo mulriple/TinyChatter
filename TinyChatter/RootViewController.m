@@ -23,8 +23,6 @@
 - (void)setupTabBarControllers;
 - (void)setupNotification;
 - (void)setupManager;
-- (void)showSignInController;
-- (void)hideSignInController;
 - (void)showHideTabBar:(NSNotification *)notif;
 @end
 
@@ -45,6 +43,8 @@
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR        @"showOrHideTabBar"
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_HIDE   @"hideTabBar"
 #define TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR_SHOW   @"showTabBar"
+
+#define USER_ACTION_SIGN_OUT                            @"userActionSignOut"
 
 #pragma mark - synthesize
 
@@ -141,6 +141,11 @@
                selector:@selector(showHideTabBar:) 
                    name:TABBAR_NOTIFICATION_SHOW_OR_HIDE_TAB_BAR 
                  object:nil];
+    
+    [center addObserver:self 
+               selector:@selector(userSignOut) 
+                   name:USER_ACTION_SIGN_OUT 
+                 object:nil];
 }
 
 - (void)setupManager
@@ -204,6 +209,14 @@
 - (void)autoSignInActionEnd
 {
     //[SVProgressHUD dismiss];
+}
+
+- (void)userSignOut
+{
+    [SVProgressHUD dismissWithError:NSLocalizedString(@"已登出", NAME_OF_SELF) 
+                         afterDelay:HUD_MESSAGE_DURATION];
+    
+    [self showSignInController];
 }
 
 #pragma mark - sign in view controller related
