@@ -22,12 +22,30 @@
 @dynamic chatSession;
 @dynamic sessionId;
 @dynamic fromMe;
+@dynamic messageId;
 
-+ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context
++ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession inManagedObjectContext:(NSManagedObjectContext *)context
 {
     XMPPAccountChatLogCoreDataStorageObject *chatLog = [NSEntityDescription insertNewObjectForEntityForName:@"XMPPAccountChatLogCoreDataStorageObject" inManagedObjectContext:context];
     chatLog.chatSession = aChatSession;
     chatLog.sessionId = aChatSession.sessionId;
+    
+    return chatLog;
+}
+
++ (XMPPAccountChatLogCoreDataStorageObject *)getChatLogIfExistWithMessageId:(NSString *)anId inManagedObjectContext:(NSManagedObjectContext *)context
+{
+    XMPPAccountChatLogCoreDataStorageObject *chatLog = nil;
+    
+    NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+    request.entity = [NSEntityDescription entityForName:@"XMPPAccountChatLogCoreDataStorageObject" inManagedObjectContext:context];
+    request.predicate = [NSPredicate predicateWithFormat:@"messageId = %@", anId];
+    
+    NSError *error = nil;
+    chatLog = [[context executeFetchRequest:request error:&error] lastObject];
+    
+    if(!error && !chatLog)
+        return nil;
     
     return chatLog;
 }

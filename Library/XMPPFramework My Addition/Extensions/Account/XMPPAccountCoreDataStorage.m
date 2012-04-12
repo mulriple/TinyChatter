@@ -224,14 +224,22 @@ static XMPPAccountCoreDataStorage *sharedInstance;
     session.latestMessage = messageBody;
     
     // add the message log to the session
-    XMPPAccountChatLogCoreDataStorageObject *log = [XMPPAccountChatLogCoreDataStorageObject createChatLogWithChatSession:session nManagedObjectContext:self.managedObjectContext];
+    XMPPAccountChatLogCoreDataStorageObject *log = [XMPPAccountChatLogCoreDataStorageObject createChatLogWithChatSession:session inManagedObjectContext:self.managedObjectContext];
     log.addedDate = messageDate;
     log.body = messageBody;
-    log.delivered = [NSNumber numberWithBool:NO];
     log.fromJidStr = [from bare];
     log.toJidStr = [to bare];
     log.readByRecipient = [NSNumber numberWithBool:NO];
     log.fromMe = [NSNumber numberWithBool:isOutgoing];
+    
+    NSString *messageId = [message attributeStringValueForName:@"id"];
+    if(messageId)
+    {
+        log.messageId = messageId;
+        // if it is from another chatter, and we are here, then the message is definitely delivered!
+        // if this message is from us, then we set to NO initially
+        log.delivered = [NSNumber numberWithBool:!isOutgoing];
+    }
 }
 
 #pragma mark - Public API
@@ -292,6 +300,65 @@ static XMPPAccountCoreDataStorage *sharedInstance;
         
         [self insertMessage:message outgoing:NO stream:xmppStream];
         
+	}];
+}
+
+- (void)handleMessageDeliveredNotificationWithMessageId:(NSString *)anId
+{
+    XMPPLogTrace();
+	
+	[self scheduleBlock:^{
+        
+        // set the deliver flag
+        XMPPAccountChatLogCoreDataStorageObject *chatLog = [XMPPAccountChatLogCoreDataStorageObject getChatLogIfExistWithMessageId:anId inManagedObjectContext:self.managedObjectContext];
+        
+        if(chatLog) {
+            chatLog.delivered = [NSNumber numberWithBool:YES];
+        }
+        
+	}];
+}
+
+- (void)handleIncomingChatStatusMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream
+{
+    XMPPLogTrace();
+	
+	[self scheduleBlock:^{
+        
+        /*
+         <message xmlns="jabber:client" id="kHcFE-41" to="75214@mobile01.com" from="2128809@mobile01.com/Smack">
+            <x xmlns="jabber:x:event">
+                <displayed />
+                <id>20120402_75214_150647</id>
+            </x>
+         </message>
+         <message xmlns="jabber:client" from="jtg2078@jabber.org/dad7b88ef2103698" to="jtg2078@gmail.com" type="chat">
+            <x xmlns="jabber:x:event">
+                <displayed/>
+                <id>tinychatter_1334220541.362009</id>
+            </x>
+         </message>
+         */
+        NSString *type = [[message elementForName:@"displayed"] stringValue];
+        NSString *iddd = [[message elementForName:@"id"] stringValue];
+        
+        NSXMLElement *x = [message elementForName:@"x" xmlns:@"jabber:x:event"];
+        NSXMLElement *displayedElement = [x elementForName:@"displayed"];
+        NSXMLElement *idElement = [x elementForName:@"id"];
+        
+        NSLog(@"type:%@ idd:%@", type, iddd);
+        
+        // check to see what type of chat status
+        
+        if(displayedElement && idElement)
+        {
+            NSString *messageId = [idElement stringValue];
+            XMPPAccountChatLogCoreDataStorageObject *chatLog = [XMPPAccountChatLogCoreDataStorageObject getChatLogIfExistWithMessageId:messageId inManagedObjectContext:self.managedObjectContext];
+            if(chatLog) {
+                chatLog.readByRecipient = [NSNumber numberWithBool:YES];
+            }
+            
+        }
 	}];
 }
 

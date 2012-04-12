@@ -75,6 +75,8 @@ typedef enum{
 - (void)setUserId:(NSString *)anId password:(NSString *)aPw;
 - (void)clearSavedPassword;
 
+- (UIImage *)avatarPhotoForJID:(XMPPJID *)aJid;
+
 - (void)signInWithJID:(NSString *)myJID 
                    pwd:(NSString *)myPwd 
                  begin:(void (^)())begin 
@@ -84,5 +86,6 @@ typedef enum{
 - (void)disconnect;
 
 - (void)sendChatMessage:(NSString *)aMessage toJid:(NSString *)aJid;
+- (void)sendMessageReadNotificationForMessageWithId:anId toJid:(NSString *)aJid;
 
 @end

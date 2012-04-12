@@ -22,8 +22,10 @@
 @property (nonatomic, retain) NSString * toJidStr;
 @property (nonatomic, retain) NSString * sessionId;
 @property (nonatomic, retain) NSNumber * fromMe;
+@property (nonatomic, retain) NSString * messageId;
 @property (nonatomic, retain) XMPPAccountChatSessionCoreDataStorageObject *chatSession;
 
-+ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession nManagedObjectContext:(NSManagedObjectContext *)context;
++ (XMPPAccountChatLogCoreDataStorageObject *)createChatLogWithChatSession:(XMPPAccountChatSessionCoreDataStorageObject *)aChatSession inManagedObjectContext:(NSManagedObjectContext *)context;
++ (XMPPAccountChatLogCoreDataStorageObject *)getChatLogIfExistWithMessageId:(NSString *)anId inManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

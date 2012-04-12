@@ -185,6 +185,9 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     // follow the example code
     allowSelfSignedCertificates = NO;
     allowSSLHostNameMismatch = NO;
+    
+    // setup the host name
+    //xmppStream.hostName = @""
 }
 
 - (void)setupMisc
@@ -249,6 +252,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [[self xmppAccount] sendMessage:aMessage to:aJid from:[[self myJid] full]];
 }
 
+- (void)sendMessageReadNotificationForMessageWithId:anId toJid:(NSString *)aJid
+{
+    [[self xmppAccount] sendMessageReadNotification:anId to:aJid from:[[self myJid] full]];
+}
+
 #pragma mark - support methods
 
 - (NSString *)getUserPassword
@@ -280,6 +288,16 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     [userDefault setObject:@"" forKey:USERDEFAULT_KEY_USER_PW];
     [userDefault synchronize];
+}
+
+- (UIImage *)avatarPhotoForJID:(XMPPJID *)aJid
+{
+    NSData *photoData =  [xmppvCardAvatarModule photoDataForJID:aJid];
+    
+    if(photoData)
+        return [UIImage imageWithData:photoData];
+    else
+        return [UIImage imageNamed:@"defaultPerson.png"];
 }
 
 #pragma mark - XMPPStreamDelegate

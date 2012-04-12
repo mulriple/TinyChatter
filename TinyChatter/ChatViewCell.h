@@ -18,6 +18,8 @@ typedef enum {
 
 @property (nonatomic, retain) UILabel *messageLabel;
 @property (nonatomic) CellViewCellMode cellMode;
+@property (nonatomic, retain) UILabel *deliverLabel;
+@property (nonatomic, retain) UILabel *readLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier mode:(CellViewCellMode)aMode;
 

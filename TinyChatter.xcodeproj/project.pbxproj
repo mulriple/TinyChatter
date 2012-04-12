@@ -123,6 +123,7 @@
 		9657147D152AFAE500C0FFC3 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9657147B152AFAE500C0FFC3 /* SettingViewController.xib */; };
 		965EA97D153513F400292333 /* cpattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 965EA97C153513F400292333 /* cpattern.png */; };
 		96733C65152E80F0007A3E76 /* TinyChatterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 96733C64152E80F0007A3E76 /* TinyChatterManager.m */; };
+		96788BF2153664D500BA530D /* defaultPerson.png in Resources */ = {isa = PBXBuildFile; fileRef = 96788BF1153664D500BA530D /* defaultPerson.png */; };
 		967A494C152D8F240040CF49 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967A494A152D8F240040CF49 /* SignInViewController.m */; };
 		967A494D152D8F240040CF49 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 967A494B152D8F240040CF49 /* SignInViewController.xib */; };
 		967A4956152D900F0040CF49 /* cbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 967A4950152D900F0040CF49 /* cbg.png */; };
@@ -427,6 +428,7 @@
 		965EA97C153513F400292333 /* cpattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cpattern.png; sourceTree = "<group>"; };
 		96733C63152E80F0007A3E76 /* TinyChatterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TinyChatterManager.h; path = Manager/TinyChatterManager.h; sourceTree = "<group>"; };
 		96733C64152E80F0007A3E76 /* TinyChatterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TinyChatterManager.m; path = Manager/TinyChatterManager.m; sourceTree = "<group>"; };
+		96788BF1153664D500BA530D /* defaultPerson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = defaultPerson.png; path = "Library/XMPPFramework-linked/Xcode/iPhoneXMPP/defaultPerson.png"; sourceTree = SOURCE_ROOT; };
 		967A4949152D8F240040CF49 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		967A494A152D8F240040CF49 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		967A494B152D8F240040CF49 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 		967A494F152D900F0040CF49 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				96788BF1153664D500BA530D /* defaultPerson.png */,
 				96A5AA8715358B6800B76FBB /* buttonbg@2x~iphone.png */,
 				96A5AA8815358B6800B76FBB /* buttonbg~iphone.png */,
 				96A5AA8915358B6800B76FBB /* textbg@2x~iphone.png */,
@@ -1548,6 +1551,7 @@
 				96A5AA9115358B6800B76FBB /* toolbarbg@2x~iphone.png in Resources */,
 				96A5AA9215358B6800B76FBB /* toolbarbg~iphone.png in Resources */,
 				96A5AAFF15358DCD00B76FBB /* README.txt in Resources */,
+				96788BF2153664D500BA530D /* defaultPerson.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

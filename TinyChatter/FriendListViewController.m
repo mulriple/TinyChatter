@@ -21,6 +21,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @interface FriendListViewController ()
 - (void)setupListContent;
 - (void)setupTableView;
+- (void)setupNavigationBarButtons;
+- (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)anIndexPath;
 @end
 
 @implementation FriendListViewController
@@ -53,6 +55,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         self.title = @"好友名單";
     }
     return self;
+}
+
+- (void)setupNavigationBarButtons
+{
+    
 }
 
 - (void)setupListContent
@@ -193,10 +200,33 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-	cell.textLabel.text = user.displayName;
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+
+#pragma mark - cell configuration
+
+- (void)configureCell:(UITableViewCell *)aCell atIndexPath:(NSIndexPath *)anIndexPath
+{
+    XMPPUserCoreDataStorageObject *user = [[self fetchedResultsController] objectAtIndexPath:anIndexPath];
+	aCell.textLabel.text = user.displayName;
+    
+    XMPPPresence *presence = user.primaryResource.presence;
+    
+    if(presence)
+        aCell.detailTextLabel.text = presence.status;
+    
+    // set user avatar image
+    if(user.photo)
+    {
+        aCell.imageView.image = user.photo;
+    }
+    else
+    {
+        XMPPManager *manager = [XMPPManager sharedInstance];
+        aCell.imageView.image = [manager avatarPhotoForJID:user.jid];
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -244,7 +274,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             break;
             
         case NSFetchedResultsChangeUpdate:
-            //[self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:

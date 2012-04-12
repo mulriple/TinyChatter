@@ -10,7 +10,14 @@
 #import "XMPPModule.h"
 #import "XMPP.h"
 
-#define _XMPP_ACCOUNT_H
+#define _XMPP_CAPABILITIES_H
+
+typedef enum {
+    XMPPAccountChatStatusActive,
+    XMPPAccountChatStatusInActive,
+    XMPPAccountChatStatusPaused,
+    XMPPAccountChatStatusComposing
+}XMPPAccountChatStatus;
 
 @class XMPPIDTracker;
 @protocol XMPPAccountStorage;
@@ -33,6 +40,8 @@
 #pragma mark Chat Interaction
 
 - (void)sendMessage:(NSString *)msg to:(NSString *)toJid from:(NSString *)fromJid;
+- (void)sendMessageReadNotification:(NSString *)msgId to:(NSString *)toJid from:(NSString *)fromJid;
+- (void)sendChatStatus:(XMPPAccountChatStatus)aStatus to:(NSString *)toJid from:(NSString *)fromJid;
 
 @end
 
@@ -44,6 +53,8 @@
 - (void)handleAuthenticateSuccessful:(XMPPStream *)xmppStream;
 - (void)handleIncomingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream;
 - (void)handleOutgoingMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream;
+- (void)handleMessageDeliveredNotificationWithMessageId:(NSString *)anId;
+- (void)handleIncomingChatStatusMessage:(XMPPMessage *)message xmppStream:(XMPPStream *)xmppStream;
 
 @optional
 

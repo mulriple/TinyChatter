@@ -20,12 +20,16 @@
 
 @synthesize messageLabel;
 @synthesize cellMode;
+@synthesize deliverLabel;
+@synthesize readLabel;
 
 #pragma mark - dealloc
 
 - (void)dealloc
 {
     [messageLabel release];
+    [deliverLabel release];
+    [readLabel release];
     
     [super dealloc];
 }
@@ -48,6 +52,24 @@
             messageLabel.numberOfLines = 0;
             [self.contentView addSubview:messageLabel];
             //SHOW_LAYER_BORDER(messageLabel)
+            
+            deliverLabel = [[UILabel alloc] init];
+            deliverLabel.frame = CGRectMake(5 + MESSAGE_LABEL_WIDTH + 3, 5, 20, 15);
+            deliverLabel.font = [UIFont boldSystemFontOfSize:10];
+            deliverLabel.backgroundColor = [UIColor clearColor];
+            deliverLabel.textColor = [UIColor darkGrayColor];
+            deliverLabel.text = @"D";
+            [self.contentView addSubview:deliverLabel];
+            //SHOW_LAYER_BORDER(deliverLabel)
+            
+            readLabel = [[UILabel alloc] init];
+            readLabel.frame = CGRectMake(5 + MESSAGE_LABEL_WIDTH + 3, 20, 20, 15);
+            readLabel.font = [UIFont boldSystemFontOfSize:10];
+            readLabel.backgroundColor = [UIColor clearColor];
+            readLabel.textColor = [UIColor darkGrayColor];
+            readLabel.text = @"R";
+            [self.contentView addSubview:readLabel];
+            //SHOW_LAYER_BORDER(readLabel)
         }
         
         if(aMode == CellViewCellModeRightAlign)
@@ -60,6 +82,24 @@
             messageLabel.numberOfLines = 0;
             [self.contentView addSubview:messageLabel];
             //SHOW_LAYER_BORDER(messageLabel)
+            
+            deliverLabel = [[UILabel alloc] init];
+            deliverLabel.frame = CGRectMake(320 - 5 - MESSAGE_LABEL_WIDTH - 28, 5, 20, 15);
+            deliverLabel.font = [UIFont boldSystemFontOfSize:10];
+            deliverLabel.backgroundColor = [UIColor clearColor];
+            deliverLabel.textColor = [UIColor darkGrayColor];
+            deliverLabel.text = @"D";
+            [self.contentView addSubview:deliverLabel];
+            //SHOW_LAYER_BORDER(deliverLabel)
+            
+            readLabel = [[UILabel alloc] init];
+            readLabel.frame = CGRectMake(320 - 5 - MESSAGE_LABEL_WIDTH - 28, 20, 20, 15);
+            readLabel.font = [UIFont boldSystemFontOfSize:10];
+            readLabel.backgroundColor = [UIColor clearColor];
+            readLabel.textColor = [UIColor darkGrayColor];
+            readLabel.text = @"R";
+            [self.contentView addSubview:readLabel];
+            //SHOW_LAYER_BORDER(readLabel)
         }
     }
     return self;

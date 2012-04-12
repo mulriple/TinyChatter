@@ -29,6 +29,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)unsubscribeFromKeyboardEvents;
 - (void)scrollToIndexPath:(NSIndexPath *)aIndexPath;
 - (void)removeSelf;
+- (void)configureCell:(ChatViewCell *)aCell atIndexPath:(NSIndexPath *)anIndexPath;
+- (void)scrollToTableBottom;
 @end
 
 @implementation ChatViewController
@@ -171,6 +173,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self setupListContent];
     [self setupTableView];
     [self setupInputToolbar];
+    
+    [self scrollToTableBottom];
 }
 
 - (void)viewDidUnload
@@ -249,7 +253,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             cell = [[[ChatViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierRight mode:CellViewCellModeRightAlign] autorelease];
         }
         
-        [cell setMessage:message.body];
+        [self configureCell:cell atIndexPath:indexPath];
         
         return cell;
     }
@@ -260,9 +264,33 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             cell = [[[ChatViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifierLeft mode:CellViewCellModeLeftAlign] autorelease];
         }
         
-        [cell setMessage:message.body];
+        [self configureCell:cell atIndexPath:indexPath];
         
         return cell;
+    }
+}
+
+- (void)configureCell:(ChatViewCell *)aCell atIndexPath:(NSIndexPath *)anIndexPath
+{
+    XMPPAccountChatLogCoreDataStorageObject *message = [[self fetchedResultsController] objectAtIndexPath:anIndexPath];
+    NSLog(@"%@", message.body);
+    
+    [aCell setMessage:message.body];
+    aCell.deliverLabel.hidden = ![message.delivered boolValue];
+    
+    if([message.fromMe boolValue] == NO)
+    {
+        if([message.readByRecipient boolValue] == NO && message.messageId)
+        {
+            [[XMPPManager sharedInstance] sendMessageReadNotificationForMessageWithId:message.messageId toJid:message.fromJidStr];
+            message.readByRecipient = [NSNumber numberWithBool:YES];
+        }
+        aCell.readLabel.hidden = NO;
+    }
+    else
+    {
+        aCell.readLabel.hidden = ![message.readByRecipient boolValue];
+        //[aCell setNeedsDisplay];
     }
 }
 
@@ -311,7 +339,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             break;
             
         case NSFetchedResultsChangeUpdate:
-            //[self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:(ChatViewCell *)[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
         case NSFetchedResultsChangeMove:
@@ -354,6 +382,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         CGRect frame2 = self.myTableView.frame;
         frame2.size.height = 376 - kKeyboardHeightPortrait;
         self.myTableView.frame = frame2;
+    } completion:^(BOOL finished) {
+        // scroll the table view to last poition
+        [self scrollToTableBottom];
     }];
     
     keyboardIsVisible = YES;
@@ -406,7 +437,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)removeSelf
 {
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void)scrollToTableBottom
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[[self fetchedResultsController] sections] lastObject];
+    NSIndexPath *lastCellIndex = [NSIndexPath indexPathForRow:[sectionInfo numberOfObjects] - 1 inSection:[[[self fetchedResultsController] sections] count] - 1];
     
+    if([lastCellIndex row] >= 0 && [lastCellIndex section] >= 0)
+        [self scrollToIndexPath:lastCellIndex];
 }
 
 @end
