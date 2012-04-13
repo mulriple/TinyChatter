@@ -19,6 +19,7 @@
         <attribute name="lastActiveDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="latestMessage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="recipientJid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="recipientStatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessionId" attributeType="String" indexed="YES" syncable="YES"/>
         <relationship name="account" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="XMPPAccountCoreDataStorageObject" inverseName="chatSessions" inverseEntity="XMPPAccountCoreDataStorageObject" syncable="YES"/>
         <relationship name="chatLogs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="XMPPAccountChatLogCoreDataStorageObject" inverseName="chatSession" inverseEntity="XMPPAccountChatLogCoreDataStorageObject" syncable="YES"/>

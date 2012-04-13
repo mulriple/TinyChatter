@@ -16,7 +16,8 @@ typedef enum {
     XMPPAccountChatStatusActive,
     XMPPAccountChatStatusInActive,
     XMPPAccountChatStatusPaused,
-    XMPPAccountChatStatusComposing
+    XMPPAccountChatStatusComposing,
+    XMPPAccountChatStatusGone,
 }XMPPAccountChatStatus;
 
 @class XMPPIDTracker;

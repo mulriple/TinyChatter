@@ -19,6 +19,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #endif
 
 @interface ChatViewController ()
+- (void)setupController;
 - (void)setupNotification;
 - (void)setupListContent;
 - (void)setupTableView;
@@ -31,6 +32,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)removeSelf;
 - (void)configureCell:(ChatViewCell *)aCell atIndexPath:(NSIndexPath *)anIndexPath;
 - (void)scrollToTableBottom;
+
+- (void)userActivityStatusFigureOutator;
 @end
 
 @implementation ChatViewController
@@ -52,6 +55,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #define MESSAGE_LABEL_MIN_HEIGHT    39
 
 #define SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL             @"signInVCSignInSuccessful"
+#define CHAT_RECIPIENT_CHAT_STATUS_RECEIVED             @"chatRecipientChatStatusReceived"
 
 #pragma mark - synthesize
 
@@ -62,6 +66,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @synthesize keyboardIsVisible;
 @synthesize recipient;
 @synthesize chatSession;
+@synthesize userState;
+@synthesize lastInputTime;
+@synthesize lastActiveTime;
+@synthesize myTimer;
 
 #pragma mark - dealloc
 
@@ -73,6 +81,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [inputToolbar release];
     [recipient release];
     [chatSession release];
+    [lastInputTime release];
+    [lastActiveTime release];
+    [myTimer invalidate];
+    [myTimer release];
     
     [super dealloc];
 }
@@ -89,6 +101,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return self;
 }
 
+- (void)setupController
+{
+    self.userState = ChatViewControllerUserInteractionStateActive;
+    userStateChanged = YES;
+}
+
 - (void)setupNotification
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -98,6 +116,21 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                selector:@selector(removeSelf)
                    name:SIGNINVC_MESSAGE_SIGN_IN_SUCCESSFUL 
                  object:nil];
+    
+    [center addObserver:self 
+               selector:@selector(viewWillBeActive)
+                   name:UIApplicationWillEnterForegroundNotification 
+                 object:nil];
+    
+    [center addObserver:self 
+               selector:@selector(viewWillBeInactive)
+                   name:UIApplicationWillResignActiveNotification 
+                 object:nil];
+    
+    [center addObserver:self 
+               selector:@selector(updateRecipientChatStatusIfNeeded:)
+                   name:CHAT_RECIPIENT_CHAT_STATUS_RECEIVED 
+                 object:nil]; 
 }
 
 - (void)setupListContent
@@ -157,6 +190,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     CGRect toolbarFrame = CGRectMake(0, viewFrame.size.height - kDefaultToolbarHeight, viewFrame.size.width, kDefaultToolbarHeight);
     inputToolbar = [[UIInputToolbar alloc] initWithFrame:toolbarFrame];
     inputToolbar.delegate = self;
+    inputToolbar.textViewDelegate = self;
     inputToolbar.textView.placeholder = NSLocalizedString(@"type your message here...", SELF_NAME);
     inputToolbar.textView.maximumNumberOfLines = 13;
     
@@ -169,12 +203,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self setupController];
     [self setupNotification];
     [self setupListContent];
     [self setupTableView];
     [self setupInputToolbar];
-    
     [self scrollToTableBottom];
+    [self startTimer];
 }
 
 - (void)viewDidUnload
@@ -184,6 +219,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self setFetchedResultsController:nil];
     [self setInputToolbar:nil];
     [self setRecipient:nil];
+    [self setLastInputTime:nil];
+    [self setLastActiveTime:nil];
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -193,20 +230,33 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //[self hideTabBar];
     [self subscribeForKeyboardEvents];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
-    //[self showTabBar];
+    // so the user has left the chat
+    [[XMPPManager sharedInstance] sendChatStatus:XMPPAccountChatStatusGone to:self.recipient];
     [self unsubscribeFromKeyboardEvents];
+    
+    [super viewWillDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)viewWillBeActive
+{
+    self.userState = ChatViewControllerUserInteractionStateActive;
+    [self startTimer];
+}
+
+- (void)viewWillBeInactive
+{
+    self.userState = ChatViewControllerUserInteractionStateInactive;
+    [self stopTimer];
 }
 
 #pragma mark - UITableViewDelegate
@@ -290,7 +340,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     else
     {
         aCell.readLabel.hidden = ![message.readByRecipient boolValue];
-        //[aCell setNeedsDisplay];
     }
 }
 
@@ -411,10 +460,162 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSLog(@"Pressed button with text: '%@'", inputText);
     XMPPManager *manager = [XMPPManager sharedInstance];
     [manager sendChatMessage:inputText toJid:self.recipient];
+    
+    self.userState = ChatViewControllerUserInteractionStateActive;
+    self.lastActiveTime = [NSDate date];
+}
+
+#pragma mark - UIExpandingTextViewDelegate
+
+- (void)expandingTextViewDidBeginEditing:(UIExpandingTextView *)expandingTextView
+{
+    self.userState = ChatViewControllerUserInteractionStateComposing;
+    self.lastActiveTime = [NSDate date];
+}
+
+- (void)expandingTextViewDidEndEditing:(UIExpandingTextView *)expandingTextView
+{
+    self.userState = ChatViewControllerUserInteractionStateActive;
+    self.lastActiveTime = [NSDate date];
+}
+
+- (void)expandingTextViewDidChange:(UIExpandingTextView *)expandingTextView
+{
+    if([expandingTextView.text length])
+    {
+        // this is for throttling
+        // (not to self: investigate other ways to achieve the same result)
+        if(self.userState != ChatViewControllerUserInteractionStateComposing)
+            self.userState = ChatViewControllerUserInteractionStateComposing;
+    }
+    else
+        self.userState = ChatViewControllerUserInteractionStateActive;
+    
+    self.lastInputTime = [NSDate date];
+    self.lastActiveTime = [NSDate date];
+}
+
+#pragma mark - timer related code
+
+- (void)startTimer
+{
+    if(self.myTimer) {
+        [self stopTimer];
+    }
+    
+    // hmm... the event will not fire if UI thread are handling touches(i.e. keystrokes from users)
+    // i hope it does not matter
+    self.myTimer = [NSTimer timerWithTimeInterval:1.0 
+                                           target:self 
+                                         selector:@selector(userActivityStatusFigureOutator) 
+                                         userInfo:nil 
+                                          repeats:YES];
+    
+    [[NSRunLoop mainRunLoop] addTimer:self.myTimer forMode:NSDefaultRunLoopMode];
+}
+
+- (void)stopTimer
+{
+    [[self myTimer] invalidate];
+    [self setMyTimer:nil];
+}
+
+#pragma mark - user input state related code
+
+- (void)setUserState:(ChatViewControllerUserInteractionState)aUserState {
+    userStateChanged = (self.userState != aUserState);
+    userState = aUserState;
+}
+
+/*
+ <active/>	User is actively participating in the chat session.	User accepts an initial content message, sends a content message, gives focus to the chat session interface (perhaps after being inactive), or is otherwise paying attention to the conversation.
+ <inactive/>	User has not been actively participating in the chat session.	User has not interacted with the chat session interface for an intermediate period of time (e.g., 2 minutes).
+ <gone/>	User has effectively ended their participation in the chat session.	User has not interacted with the chat session interface, system, or device for a relatively long period of time (e.g., 10 minutes).
+ <composing/>	User is composing a message.	User is actively interacting with a message input interface specific to this chat session (e.g., by typing in the input area of a chat window).
+ <paused/>	User had been composing but now has stopped.	User was composing but has not interacted with the message input interface for a short period of time (e.g., 30 seconds).
+ 
+ INACTIVE <--> ACTIVE <--> COMPOSING <--> PAUSED
+ */
+
+#define USER_STATE_INACTIVE_TIME_TRIGGER        120
+#define USER_STATE_GONE_TIME_TRIGGER            600
+#define USER_STATE_PAUSED_TIME_TRIGGER          2
+
+// lol
+// using the var userStateChanged for decision making is too fragile
+// i need to use some other ways to handle this
+- (void)userActivityStatusFigureOutator {
+    
+    XMPPManager *manager = [XMPPManager sharedInstance];
+    
+    // one check at a time, if the state already changed prior
+    // this method is called, then we do check on next time
+    if(userStateChanged == NO)
+    {
+        // check inactive
+        // can only come from state of paused or active
+        if(self.userState == ChatViewControllerUserInteractionStatePaused ||
+           self.userState == ChatViewControllerUserInteractionStateActive)
+        {
+            NSTimeInterval  elapsedTime = [[NSDate date] timeIntervalSinceDate:self.lastActiveTime];
+            
+            if(elapsedTime > USER_STATE_INACTIVE_TIME_TRIGGER)
+                self.userState = ChatViewControllerUserInteractionStateInactive;
+        }
+        // check paused
+        // can only come from state of composing
+        else if (self.userState == ChatViewControllerUserInteractionStateComposing)
+        {
+            NSTimeInterval  elapsedTime = [[NSDate date] timeIntervalSinceDate:self.lastInputTime];
+            
+            if(elapsedTime > USER_STATE_PAUSED_TIME_TRIGGER)
+                self.userState = ChatViewControllerUserInteractionStatePaused;
+        }
+        
+        // state gone
+        // lets make it the rule that can only be trigger if the app goes to background or the chat view is popped
+    }
+    
+    if(userStateChanged == YES)
+    {
+        // this is like a state machine
+        switch (self.userState) {
+            case ChatViewControllerUserInteractionStateInactive:
+            {
+                [manager sendChatStatus:XMPPAccountChatStatusInActive to:self.recipient];
+            }
+                break;
+            case ChatViewControllerUserInteractionStateActive:
+            {
+                [manager sendChatStatus:XMPPAccountChatStatusActive to:self.recipient];
+            }
+                break;
+            case ChatViewControllerUserInteractionStateComposing:
+            {
+                [manager sendChatStatus:XMPPAccountChatStatusComposing to:self.recipient];
+            }
+                break;
+            case ChatViewControllerUserInteractionStatePaused:
+            {
+                [manager sendChatStatus:XMPPAccountChatStatusPaused to:self.recipient];
+            }
+                break;
+            case ChatViewControllerUserInteractionStateGone:
+            {
+                [manager sendChatStatus:XMPPAccountChatStatusGone to:self.recipient];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+        userStateChanged = NO;
+    }
 }
 
 #pragma mark - support methods
-
+  
 - (void)hideTabBar
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
@@ -437,6 +638,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 - (void)removeSelf
 {
+    self.userState = ChatViewControllerUserInteractionStateGone;
     [self.navigationController popViewControllerAnimated:NO];
 }
 
@@ -447,6 +649,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     if([lastCellIndex row] >= 0 && [lastCellIndex section] >= 0)
         [self scrollToIndexPath:lastCellIndex];
+}
+
+- (void)updateRecipientChatStatusIfNeeded:(NSNotification *)notif
+{
+    NSArray *statusInfo = [notif object];
+    if(statusInfo && [statusInfo count] == 2) {
+        NSString *from = [statusInfo objectAtIndex:0];
+        NSString *status = [statusInfo objectAtIndex:1];
+        
+        if([from isEqualToString:self.recipient])
+            self.navigationItem.title = status;
+    }
 }
 
 @end

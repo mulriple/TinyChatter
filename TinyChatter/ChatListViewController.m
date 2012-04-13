@@ -273,6 +273,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     XMPPAccountChatSessionCoreDataStorageObject *chatSession = [[self fetchedResultsController] objectAtIndexPath:aIndexPath];
 	aCell.textLabel.text = chatSession.recipientJid;
     aCell.detailTextLabel.text = chatSession.latestMessage;
+    
+    //NSLog(@"hoho the state: %@", chatSession.recipientStatus);
 }
 
 @end

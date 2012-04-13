@@ -270,7 +270,8 @@ static const int xmppLogLevel = XMPP_LOG_LEVEL_WARN;
                 [statusMessage addChild:[NSXMLElement elementWithName:@"gone" xmlns:@"http://jabber.org/protocol/chatstates"]];
                 break;
         }
-		
+        
+		[xmppStream sendElement:statusMessage];
 	}};
 	
 	if (dispatch_get_current_queue() == moduleQueue)

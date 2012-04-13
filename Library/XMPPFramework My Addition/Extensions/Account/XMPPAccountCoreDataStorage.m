@@ -35,6 +35,8 @@ NSAssert(dispatch_get_current_queue() == storageQueue, @"Private method: MUST ru
 
 @implementation XMPPAccountCoreDataStorage
 
+#define CHAT_RECIPIENT_CHAT_STATUS_RECEIVED             @"chatRecipientChatStatusReceived"
+
 static XMPPAccountCoreDataStorage *sharedInstance;
 
 + (XMPPAccountCoreDataStorage *)sharedInstance
@@ -324,7 +326,6 @@ static XMPPAccountCoreDataStorage *sharedInstance;
     XMPPLogTrace();
 	
 	[self scheduleBlock:^{
-        
         /*
          <message xmlns="jabber:client" id="kHcFE-41" to="75214@mobile01.com" from="2128809@mobile01.com/Smack">
             <x xmlns="jabber:x:event">
@@ -339,17 +340,12 @@ static XMPPAccountCoreDataStorage *sharedInstance;
             </x>
          </message>
          */
-        NSString *type = [[message elementForName:@"displayed"] stringValue];
-        NSString *iddd = [[message elementForName:@"id"] stringValue];
         
         NSXMLElement *x = [message elementForName:@"x" xmlns:@"jabber:x:event"];
         NSXMLElement *displayedElement = [x elementForName:@"displayed"];
         NSXMLElement *idElement = [x elementForName:@"id"];
         
-        NSLog(@"type:%@ idd:%@", type, iddd);
-        
         // check to see what type of chat status
-        
         if(displayedElement && idElement)
         {
             NSString *messageId = [idElement stringValue];
@@ -357,8 +353,55 @@ static XMPPAccountCoreDataStorage *sharedInstance;
             if(chatLog) {
                 chatLog.readByRecipient = [NSNumber numberWithBool:YES];
             }
-            
+            return;
         }
+        
+        /*
+         <message 
+            from='bernardo@shakespeare.lit/pda'
+            to='francisco@shakespeare.lit/elsinore'
+            type='chat'>
+                <composing xmlns='http://jabber.org/protocol/chatstates'/>
+         </message>
+         */
+        
+        NSXMLElement *active = [message elementForName:@"active" xmlns:@"http://jabber.org/protocol/chatstates"];
+        NSXMLElement *inactive = [message elementForName:@"inactive" xmlns:@"http://jabber.org/protocol/chatstates"];
+        NSXMLElement *paused = [message elementForName:@"paused" xmlns:@"http://jabber.org/protocol/chatstates"];
+        NSXMLElement *composing = [message elementForName:@"composing" xmlns:@"http://jabber.org/protocol/chatstates"];
+        NSXMLElement *gone = [message elementForName:@"gone" xmlns:@"http://jabber.org/protocol/chatstates"];
+        NSString *state = nil;
+        
+        if(active)
+            state = @"active";
+        else if(inactive)
+            state = @"inactive";
+        else if(paused)
+            state = @"paused";
+        else if(composing)
+            state = @"composing";
+        else if(gone)
+            state = @"gone";
+        
+        if([state length]) {
+            NSString *fromBareJid = [[message from] bare];
+            NSString *toBareJid = [[message to] bare];
+            NSString *sessionId = [XMPPAccountChatSessionCoreDataStorageObject createSessionIdFromSelfJidBare:toBareJid recipientJidBare:fromBareJid];
+            
+            XMPPAccountChatSessionCoreDataStorageObject *chatSession = [XMPPAccountChatSessionCoreDataStorageObject getChatSessionIfExistWithSessionId:sessionId inManagedObjectContext:self.managedObjectContext];
+            
+            if(chatSession) {
+                
+                chatSession.recipientStatus = state;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"hoho the state: %@", state);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:CHAT_RECIPIENT_CHAT_STATUS_RECEIVED 
+                                                                        object:[NSArray arrayWithObjects:fromBareJid, state, nil]];
+                });
+            }
+        }
+        
 	}];
 }
 

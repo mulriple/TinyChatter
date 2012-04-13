@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "XMPPFramework.h"
 
-typedef enum{
+typedef enum {
     FailureTypeError,
     FailureTypeConnectionError,
 } FailureType;
@@ -87,5 +87,6 @@ typedef enum{
 
 - (void)sendChatMessage:(NSString *)aMessage toJid:(NSString *)aJid;
 - (void)sendMessageReadNotificationForMessageWithId:anId toJid:(NSString *)aJid;
+- (void)sendChatStatus:(XMPPAccountChatStatus)aStatus to:(NSString *)toJid;
 
 @end

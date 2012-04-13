@@ -257,6 +257,11 @@ typedef void (^XMPPManagerSignInOperationEndBlock)();
     [[self xmppAccount] sendMessageReadNotification:anId to:aJid from:[[self myJid] full]];
 }
 
+- (void)sendChatStatus:(XMPPAccountChatStatus)aStatus to:(NSString *)toJid
+{
+    [[self xmppAccount] sendChatStatus:aStatus to:toJid from:[[self myJid] full]];
+}
+
 #pragma mark - support methods
 
 - (NSString *)getUserPassword

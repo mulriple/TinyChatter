@@ -28,14 +28,16 @@
 
 @protocol UIInputToolbarDelegate <NSObject>
 @optional
--(void)inputButtonPressed:(NSString *)inputText;
+- (void)inputButtonPressed:(NSString *)inputText;
 @end
+
 
 @interface UIInputToolbar : UIToolbar <UIExpandingTextViewDelegate> 
 {
     UIExpandingTextView *textView;
     UIBarButtonItem *inputButton;
     NSObject <UIInputToolbarDelegate> *delegate;
+    NSObject <UIExpandingTextViewDelegate> *textViewDelegate;
 }
 
 - (void)drawRect:(CGRect)rect;
@@ -43,5 +45,6 @@
 @property (nonatomic, retain) UIExpandingTextView *textView;
 @property (nonatomic, retain) UIBarButtonItem *inputButton;
 @property (assign) NSObject<UIInputToolbarDelegate> *delegate;
+@property (assign) NSObject<UIExpandingTextViewDelegate> *textViewDelegate;
 
 @end

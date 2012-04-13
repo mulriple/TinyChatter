@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString                          * latestMessage;
 @property (nonatomic, retain) NSString                          * accountJid;
 @property (nonatomic, retain) NSString                          * sessionId;
+@property (nonatomic, retain) NSString                          * recipientStatus;
 @property (nonatomic, retain) XMPPAccountCoreDataStorageObject  * account;
 @property (nonatomic, retain) NSSet                             * chatLogs;
 

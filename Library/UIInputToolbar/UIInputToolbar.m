@@ -30,6 +30,7 @@
 @synthesize textView;
 @synthesize inputButton;
 @synthesize delegate;
+@synthesize textViewDelegate;
 
 -(void)inputButtonPressed
 {
@@ -131,6 +132,22 @@
     self.frame = r;
 }
 
+- (void)expandingTextViewDidBeginEditing:(UIExpandingTextView *)expandingTextView
+{
+    if ([[self textViewDelegate] respondsToSelector:@selector(expandingTextViewDidBeginEditing:)]) 
+    {
+		[self.textViewDelegate expandingTextViewDidBeginEditing:expandingTextView];
+	}
+}
+
+- (void)expandingTextViewDidEndEditing:(UIExpandingTextView *)expandingTextView
+{
+    if ([[self textViewDelegate] respondsToSelector:@selector(expandingTextViewDidEndEditing:)]) 
+    {
+		[self.textViewDelegate expandingTextViewDidEndEditing:expandingTextView];
+	}
+}
+
 -(void)expandingTextViewDidChange:(UIExpandingTextView *)expandingTextView
 {
     /* Enable/Disable the button */
@@ -138,6 +155,11 @@
         self.inputButton.enabled = YES;
     else
         self.inputButton.enabled = NO;
+    
+    if ([[self textViewDelegate] respondsToSelector:@selector(expandingTextViewDidChange:)]) 
+    {
+		[self.textViewDelegate expandingTextViewDidChange:expandingTextView];
+	}
 }
 
 @end

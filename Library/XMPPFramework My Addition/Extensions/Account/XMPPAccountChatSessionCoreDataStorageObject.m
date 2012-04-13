@@ -21,6 +21,7 @@
 @dynamic sessionId;
 @dynamic account;
 @dynamic chatLogs;
+@dynamic recipientStatus;
 
 + (XMPPAccountChatSessionCoreDataStorageObject *)getChatSessionIfExistWithSessionId:(NSString *)anID inManagedObjectContext:(NSManagedObjectContext *)context
 {
